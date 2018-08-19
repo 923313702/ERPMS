@@ -1,0 +1,542 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/easyui.css" rel="stylesheet" />
+    <style>
+        #quotation3_form .kv-table {
+            border-right: 1px solid /*#cacaca \9*/;
+            *border-right: 1px solid /*#cacaca*/
+        }
+
+        #quotation3_form .kv-table .kv-table-row {
+            border-bottom: 1px solid /*#cacaca*/
+        }
+
+            #quotation3_form .kv-table .kv-table-row .kv-item {
+                padding-left: 134px
+            }
+
+                #quotation3_form .kv-table .kv-table-row .kv-item .kv-label {
+                    float: left;
+                    padding: 0 10px;
+                    margin-left: -134px;
+                    width: 112px;
+                    background: #f5f5f5;
+                    border: 1px solid /*#cacaca*/;
+                    border-bottom: none;
+                    border-top: none
+                }
+
+                #quotation3_form .kv-table .kv-table-row .kv-item .kv-content-wrap {
+                    float: left;
+                    width: 100%
+                }
+
+                #quotation3_form .kv-table .kv-table-row .kv-item .kv-content {
+                    padding: 10px
+                }
+
+            #quotation3_form .kv-table .kv-table-row.col-3 .kv-item-wrap {
+                float: left;
+                width: 33.33%
+            }
+
+            #quotation3_form .kv-table .kv-table-row.col-2 .kv-item-wrap {
+                float: left;
+                width: 33.33%
+            }
+
+        #quotation3_form table.kv-table {
+            width: 100%
+        }
+
+            #quotation3_form table.kv-table .kv-label {
+                padding: 0 10px;
+                width: 114px;
+                background: #f5f5f5;
+                border: 1px solid /*#cacaca*/;
+                border-top: none
+            }
+
+            #quotation3_form table.kv-table td.kv-content, table.kv-table td.kv-label {
+                /*
+        height: 29px;
+        padding-left: 20px
+*/
+                height: 22px;
+                padding: 5px 0;
+                border-bottom: 1px solid /*#cacaca*/;
+                font-size: 12px;
+                padding-left: 15px
+            }
+
+            #quotation3_form table.kv-table tr:first-child td.kv-content, #quotation3_form table.kv-table tr:first-child td.kv-label {
+                border-top: 1px solid /*#cacaca*/
+            }
+
+            #quotation3_form table.kv-table tr td.kv-content:last-child {
+                border-right: 1px solid /*#cacaca*/
+            }
+
+            #quotation3_form table.kv-table tr .button {
+                text-align: center;
+                border-radius: 0;
+                text-indent: 0;
+                height: 32px
+            }
+
+            #quotation3_form table.kv-table .kv-content {
+                /*width: 260px;*/
+                padding: 5px 10px
+            }
+
+            #quotation3_form table.kv-table .textarea-wrap textarea {
+                width: 98%
+            }
+
+        #quotation3_form .kv-table .kv-content .combo, #quotation3_form .kv-table .kv-content .textbox, #quotation3_form .kv-table .kv-content .datebox {
+            border: none;
+        }
+
+        #quotation3_form .kv-table .kv-content .validatebox-invalid, #quotation3_form  .kv-table .kv-content .textbox-invalid {
+            background-color: #fff;
+        }
+
+        #printLogo {
+            position: absolute;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font: 10px/12px "Helvetica Neue",Arial, Helvetica, sans-serif;
+            color: #555;
+        }
+
+        a {
+            color: #666;
+        }
+
+        #content {
+       
+            margin: 0 auto;
+            width: 900px;
+       
+        }
+
+            /*
+        Pretty Table Styling
+        CSS Tricks also has a nice writeup: http://css-tricks.com/feature-table-design/
+        */
+
+        .quotation_print {
+            overflow: hidden;
+            border: 1px solid;
+            background: #fefefe;
+            border-right: none;
+            width: 100%;
+        }
+
+            .quotation_print th, .quotation_print td {
+                padding: 7px 5px;
+                text-align: center;
+            }
+
+            .quotation_print th {
+                padding-top: 10px;
+                text-shadow: 1px 1px 1px #fff;
+                border-right: 1px solid;
+                background: #e8eaeb;
+            }
+
+            .quotation_print td {
+                border-top: 1px solid;
+                border-right: 1px solid;
+            }
+
+            .quotation_print tr.odd-row td {
+                background: #f6f6f6;
+            }
+
+            .quotation_print td.first, th.first {
+                text-align: left
+            }
+
+        .quotation_printtd.last {
+            border-right: none;
+        }
+
+        .quotation_print td {
+            background: -moz-linear-gradient(100% 25% 90deg, #fefefe, #f9f9f9);
+            background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f9f9f9), to(#fefefe));
+        }
+
+        .quotation_print tr.odd-row td {
+            background: -moz-linear-gradient(100% 25% 90deg, #f6f6f6, #f1f1f1);
+            background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f1f1f1), to(#f6f6f6));
+        }
+
+        .quotation_print th {
+            background: -moz-linear-gradient(100% 20% 90deg, #e8eaeb, #ededed);
+            background: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#ededed), to(#e8eaeb));
+        }
+        #content h1 {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding: 5px;
+        }
+        .myform .combo, .myform .textbox, .myform .datebox, .myform .validatebox {
+            height: 20px;
+        }
+
+            .myform .textbox .textbox-icon, .myform .datebox .textbox-icon {
+                height: 20px !important;
+            }
+        .thclass {
+            padding-top: 10px;
+            text-shadow: 1px 1px 1px #fff;
+            border-right: 1px solid;
+            background: #e8eaeb;
+        }
+     
+    </style>
+</head>
+<body>
+    <div id="content">
+        <p id="printLogo">
+            <img src="~/images/logo.png" />
+        </p>
+        <div style="height:40px;"></div>
+        <h1>报价单</h1>
+        <form id="quotation3_form" class="myform" >
+            <table class="kv-table" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="kv-label">印品名称</td>
+                        <td class="kv-content">
+                            <input class="easyui-textbox"  name="订单名称" />
+                        </td>
+                        <td class="kv-label">是否开票</td>
+                        <td class="kv-content"><input type="checkbox" value="1" name="是否开票" /></td>
+                        <td class="kv-label">报价单号</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="订单号" /></td>
+                     
+                    
+                    </tr>
+                    <tr>
+                        <td class="kv-label">客户名称</td>
+                        <td class="kv-content" colspan="3"><input class="easyui-combobox" id="quotation2_customer" required name="客户编码" style="min-width:300px;" /></td>
+                        <td class="kv-label">联系方式</td>
+                        <td class="kv-content" ><input class="easyui-textbox" name="联系方式" /></td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="kv-label">成品数量</td>
+                        <td class="kv-content"><input class="easyui-numberbox" name="成品数量" /></td>
+                        <td class="kv-label">计量单位</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="计量单位" /></td>
+
+                        <td class="kv-label">印品类别</td>
+                        <td class="kv-content"><input class="easyui-combobox " id="quotation2_category" name="印品类别编码" /></td>
+                   
+                    <tr>
+                        <td class="kv-label">开本</td>
+                        <td class="kv-content"><input class="easyui-textbox" /></td>
+                        <td class="kv-label">装订方法</td>
+                        <td class="kv-content"><input class="easyui-textbox" /></td>
+                        <td class="kv-label">成品尺寸</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="成品尺寸" /></td>
+                  
+                    </tr>
+                    <tr>
+                        <td class="kv-label">业务员</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation2_saleMan" name="业务员编码" /></td>
+                        <td class="kv-label">制单人</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation2_person"  name="制单人编码" /></td>
+                        <td class="kv-label">制单日期</td>
+                        <td class="kv-content"><input class="easyui-datebox"  name="制单日期" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="kv-label">客户要求</td>
+                        <td class="kv-content" colspan="5"><input class="easyui-textbox" data-options="multiline:true" style="min-width:700px;height:50px;" name="报价要求" /></td>
+                    </tr>
+                    <tr>
+                      
+                        <td class="kv-label">审核人</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation2_auditorPerson" name="审核人编码" readonly /></td>
+                        <td class="kv-label">审核日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" name="审核日期" readonly /></td>
+                        <td class="kv-label">交货日期</td>
+                        <td class="kv-content"><input class="easyui-textbox" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <table class="quotation_print" id="quotation_table1" cellspacing="0"></table>
+        <div style="height:20px; text-align:center; text-align: center;line-height: 20px; padding: 10px; font-weight: bold;font-size: 16px;">报价项目</div>
+        <table class="quotation_print" id="quotation_table2" cellspacing="0"></table>
+        <div style="height:10px;"></div>
+        @*<table class="quotation_print" id="quotation_total" cellspacing="0">
+            <tbody></tbody>
+        </table>*@
+    </div>
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/tablesMergeCell.js"></script>
+    <script>
+        $(function () {
+            var comboboxConfig = [
+                { dom: '#quotation2_saleMan', url: '/ERP_Order/GetStaff' },
+                { dom: '#quotation2_category', url: '/ERP_Order/PCategory' },
+                { dom: '#quotation2_customer', url: '/ERP_Order/GetCustormer2' },
+                { dom: '#quotation2_person', url: '' },
+                { dom: '#quotation2_auditorPerson', url: '' }
+            ];
+            initCombobox(comboboxConfig);
+            $('#quotation2_saleMan').combobox({
+                onLoadSuccess: function () {
+                    var data = $(this).combobox('getData');
+                    $('#quotation2_person').combobox('loadData', data);
+                    $('#quotation2_auditorPerson').combobox('loadData', data)
+                }
+            })
+            $.post('/ERP_Quotation/PrintData', null, function (response) {
+                if (response != null&&response!='') {
+                    var jsondata = $.parseJSON(response);
+                    var query = jsondata.formData;
+                    $('#quotation3_form').form('load', query);
+                    var rows = jsondata.detail;
+                    createTabel(rows, '#quotation_table1')
+                    var prices = jsondata.price;
+                    createTabel(prices, '#quotation_table2')
+                    $('#quotation_table2').tablesMergeCell({
+                        cols: [0]
+                    });
+
+                    var count = isNaN(query.成品数量) ? 0 : query.成品数量
+                    console.log(count);
+                    hebin('quotation_table2', [{ rowIndex: 7, content: '单个金额', reckon: true, total: count }, { rowIndex: 7, content: '合计', reckon: false }]);
+                    hebin2('quotation_table2', 7)
+                    clearTimeout(settimeout);
+                    var settimeout = setTimeout(function () {
+                       // window.print();
+                    },400)
+                    //window.print().detail(500);
+                }
+
+            })
+
+        })
+
+        function createTabel(rows,table)
+        {
+            if (rows != null && rows.length > 0) {
+                var headCol = Object.keys(rows[0]);
+                var _table = $(table);
+                _table.empty();
+                var headHtml = '';
+                for (var i in headCol) {
+                    headHtml += '<th>' + headCol[i] + '</th>';
+                }
+                _table.append('<thead>' + headHtml + '</thead>');
+                var tbodyHtml = '';
+                for (var i = 0; i < rows.length; i++) {
+                    var trHtml = ''
+                    for (var j in rows[i]) {
+
+                        trHtml += '<td>' + rows[i][j] + '</td>';
+                    }
+                    tbodyHtml += '<tr>' + trHtml + '</tr>';
+                }
+                _table.append('<tbody>' + tbodyHtml + '</tbody>');
+              
+            }
+
+        }
+
+
+        function initCombobox (config) {
+            for (var i in config) {
+                $(config[i].dom).combobox({
+                    url: config[i].url,
+                    textField: 'Key',
+                    valueField: 'Id',
+                   
+                })
+            }
+
+        }
+
+        function hebin(tables, arr) {
+            tables = document.getElementById(tables);
+            for (var j in arr) {
+                var data = arr[j];
+                if (data.rowIndex > 0) {
+                    var obj = document.createElement("th");
+
+                    obj.innerHTML = data.content;
+                    tables.rows[0].appendChild(obj);
+                }
+                var _rowSpan = 1;
+                var _rowIndex = 0;
+                for (var i = 1; i < tables.rows.length; i++) {
+                    if (tables.rows[i].cells[0].innerHTML == tables.rows[_rowIndex].cells[0].innerHTML) {
+                        _rowSpan++;
+                        if (data.rowIndex > 0) {
+                            var money = isNaN(tables.rows[i].cells[data.rowIndex - 1].innerHTML) ? 0 : parseFloat( tables.rows[i].cells[data.rowIndex  - 1].innerHTML);
+                            var money2 = isNaN(tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML) ? 0 : parseFloat(tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML);
+                            if (data.reckon) {
+                                tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML = (money2 + money / data.total).toFixed(2);
+                                 console.log(tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML)
+                            } else {
+                                tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML = parseFloat(money + money2).toFixed(2);
+                            }
+
+                            tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].rowSpan = _rowSpan;
+                        }
+                        //tables.rows[i].deleteCell(0);
+                        //tables.rows[_rowIndex].cells[0].rowSpan = _rowSpan;
+                    }
+                    else {
+                        _rowSpan = 1;
+                        _rowIndex = i;
+                        if (data.rowIndex > 0) {
+
+                            var td = tables.rows[i].insertCell(tables.rows[i].cells.length);
+                            if (data.reckon) {
+                                td.innerHTML = (parseFloat(tables.rows[i].cells[data.rowIndex - 1].innerHTML) / data.total).toFixed(2);
+                            } else {
+                                td.innerHTML = tables.rows[i].cells[data.rowIndex - 1].innerHTML;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function hebin2(tables,rowIndex) {
+            tables = document.getElementById(tables);
+            var obj = document.createElement("th");
+            obj.innerHTML = '总金额';
+            tables.rows[0].appendChild(obj);
+            var money = 0;
+
+            for (var i = 1; i < tables.rows.length; i++) {
+                 money += isNaN(tables.rows[i].cells[rowIndex - 1].innerHTML) ? 0 : parseFloat(tables.rows[i].cells[rowIndex - 1].innerHTML);
+                 
+            }
+            var td = tables.rows[1].insertCell(tables.rows[1].cells.length);
+            td.innerHTML = money.toFixed(2);
+            console.log(tables.rows.length)
+            td.rowSpan = tables.rows.length-1
+        }
+
+        ////计算(固定的)
+        //function reckon(arr, data) {
+        //    var caiLiao = shouGong = yinHou = yinQian = yinShua = shuiFei = fanKuan = qiTa = fuMo = total = 0
+        //    for (var i = 0; i < arr.length; i++) {
+        //        var tem = arr[i].统计编码
+        //        switch (tem) {
+        //            case '材料':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    caiLiao += arr[i].金额
+        //                    console.log (caiLiao)
+        //                }
+        //                break;
+        //            case '手工':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    shouGong += arr[i].金额
+        //                }
+        //                break;
+        //            case '印后':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    yinHou += arr[i].金额;
+        //                }
+        //                break;
+        //            case '覆膜':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    fuMo += arr[i].金额;
+        //                }
+        //                break;
+        //            case '印前':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    yinQian += arr[i].金额;
+        //                }
+        //                break;
+        //            case '印刷':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    yinShua += arr[i].金额;
+        //                }
+        //                break;
+
+        //            case '税款':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    shuiFei += arr[i].金额;
+        //                }
+        //                break;
+        //            case '返款':
+        //                if (!isNaN(arr[i].金额)) {
+        //                    fanKuan += arr[i].金额;
+        //                }
+        //                break;
+        //            default:
+        //                if (!isNaN(arr[i].金额)) {
+        //                    qiTa += arr[i].金额;
+        //                }
+        //                break;
+        //        }
+        //        if (!isNaN(arr[i].金额)) {
+        //            total += arr[i].金额;
+        //        }
+        //    }
+        //    var html = '';
+        //    for (var i in data) {
+        //        console.log(data[i]);
+        //        switch (data[i]) {
+        //            case '材料':
+        //                html += '<td>' + data[i] + '金额</td><td>' + caiLiao.toFixed(2) + '</td>';
+        //                break;
+        //            case '手工':
+        //                html += '<td>' + data[i] + '金额</td><td>' + shouGong.toFixed(2) + '</td>'
+        //                break;
+        //            case '印后':
+        //                html += '<td>' + data[i] + '金额</td><td>' + yinHou.toFixed(2) + '</td>';
+        //                break;
+        //            case '覆膜':
+        //                html += '<td>' + data[i] + '金额</td><td>' + fuMo.toFixed(2) + '</td>'
+        //                break;
+        //            case '印前':
+        //                html += '<td>' + data[i] + '金额</td><td>' + yinQian.toFixed(2) + '</td>'
+        //                break;
+        //            case '印刷':
+        //                html += '<td>' + data[i] + '金额</td><td>' + yinShua.toFixed(2) + '</td>'
+        //                break;
+        //            case '税费':
+        //                html += '<td>' + data[i] + '金额</td><td>' + shuiFei.toFixed(2) + '</td>'
+        //                break;
+        //            case '返款':
+        //                html += '<td>' + data[i] + '金额</td><td>' + fanKuan.toFixed(2) + '</td>'
+        //                break;
+        //            case '其他':
+        //                html += '<td>' + data[i] + '金额</td><td>' + qiTa.toFixed(2) + '</td>'
+        //                break;
+        //            case '合计':
+        //                html += '<td>' + data[i] + '金额</td><td>' + total.toFixed(2) + '</td>'
+        //                break;
+        //        }
+        //    }
+        //    console.log(html)
+        //    $('#quotation_total tbody').append('<tr>'+html+'</tr>')
+        //}
+    </script>
+</body>
+</html>

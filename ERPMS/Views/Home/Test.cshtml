@@ -1,0 +1,358 @@
+﻿@*<html>
+<head runat="server">
+    <title>Lodop打印</title>
+    <script src="~/Scripts/LodopFuncs.js"></script>
+
+    <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+        <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+    </object>
+    <script language="javascript" type="text/javascript">
+        //查看本机是否安装控件
+        function CheckIsInstall() {
+            try {
+                var LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+                if ((LODOP != null) && (typeof (LODOP.VERSION) != "undefined")) alert("本机已成功安装过Lodop控件!\n  版本号:" + LODOP.VERSION);
+            } catch (err) {
+                //alert("Error:本机未安装或需要升级!");
+            }
+        };
+    </script>
+    <script language="javascript" type="text/javascript">
+
+        var LODOP; //声明为全局变量
+        function prn1_preview() {
+            CreateOneFormPage();
+            LODOP.PREVIEW();
+        };
+        function prn1_print() {
+            CreateOneFormPage();
+            LODOP.PRINT();
+        };
+        function prn1_printA() {
+            CreateOneFormPage();
+            LODOP.PRINTA();
+        };
+        function CreateOneFormPage() {
+            LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+            LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_表单一");
+            LODOP.SET_PRINT_STYLE("FontSize", 18);
+            LODOP.SET_PRINT_STYLE("Bold", 1);
+            LODOP.ADD_PRINT_TEXT(50, 231, 260, 39, "打印页面部分内容");
+            LODOP.ADD_PRINT_HTM(88, 200, 350, 600, document.getElementById("divprint").innerHTML);
+
+        };
+    </script>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <div>
+            测试一下：<a href="javascript:CheckIsInstall()">查看本机是否安装控件</a><br />
+            若只打印《表单一》,看一下<a href="javascript:prn1_preview()">打印预览</a>,可<a href="javascript:prn1_print()">直接打印</a>也可<a href="javascript:prn1_printA()">选择打印机</a>打印。<br />
+            <b>以下为打印部分</b><br /><br /><br /><br />
+        </div>
+        <div id="divprint">
+            <table border="1" width="300" id="tb01" bgcolor="#CCFFCC" style="border: solid 1px black;
+            border-collapse: collapse">
+                <tr>
+                    <td width="133" id="mtb001">
+                        <font face="黑体" color="#FF0000" size="3"><u> 《表单一》 </u></font>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" width="300" height="106" cellspacing="0" bgcolor="#CCFFFF" style="border-collapse: collapse;
+            table-layout: fixed; border: solid 1px black;">
+                <tr>
+                    <td width="66" height="16" style="border: solid 1px black">
+                        <font color="#0000FF">A</font><font color="#0000FF">等</font>
+                    </td>
+                    <td width="51" height="16" style="border: solid 1px black">
+                        <font color="#0000FF">B</font><font color="#0000FF">等</font>
+                    </td>
+                    <td width="51" height="16" style="border: solid 1px black">
+                        <font color="#0000FF">C</font><font color="#0000FF">等</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="66" height="16" style="border: solid 1px black">
+                        A<sub>01</sub>
+                    </td>
+                    <td width="80" height="12" style="border: solid 1px black">
+                        中-001
+                    </td>
+                    <td width="51" height="12" style="border: solid 1px black">
+                        C1<sup>x</sup>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="66" height="16" style="border: solid 1px black">
+                        A<sub>02</sub>
+                    </td>
+                    <td width="80" height="16" style="border: solid 1px black">
+                        日-002
+                    </td>
+                    <td width="51" height="16" style="border: solid 1px black">
+                        <font face='Vernada'>7㎥</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="66" height="16" style="border: solid 1px black; overflow: hidden">
+                        A<sub>03</sub><nobr>over隐藏后面的：1234567890</nobr>
+                    </td>
+                    <td width="80" height="16" style="border: solid 1px black; overflow: hidden">
+                        韩-003
+                    </td>
+                    <td width="51" height="16">
+                        C3<sup>x</sup>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>*@
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas画印章</title>
+    
+</head>
+<body>
+    <lable style="display: inline-block;margin:50px;font-size: 18px;">
+        印章文字:
+        <input type="text" id="textname" style="height: 30px;width: 200px;" />
+    </lable>
+    <input type="button" id="changename" value="修改" />
+    <div>
+        <canvas id="canvas" width="400" height="400" style="margin-left: 130px;border: 1px solid #666666;"></canvas>
+        <canvas id="canvas2" width="400" height="400" style="margin-left: 130px;border: 1px solid #666666;"></canvas>
+    </div>
+    <lable style="display: inline-block;margin:50px;font-size: 18px;">
+        印章文字:
+        <input type="text" id="textname2" style="height: 30px;width: 200px;" />
+    </lable>
+    <input type="button" id="changename2" value="修改" />
+    <div>
+       
+    </div>
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+    <script>
+        // canvas绘制图像的原点是canvas画布的左上角
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+        var canvas2 = document.getElementById("canvas2");
+        var context2 = canvas2.getContext('2d');
+
+        $("body").on("click", "#changename", function () {
+            drawText( canvas, context ,$("#textname").val());
+        });
+
+        $("body").on("click", "#changename2", function () {
+            drawText(canvas,context2,$("#textname2").val());
+
+        });
+        // 绘制圆形印章
+        function drawText( canvas ,context,companyName = "智慧应用软件工作室") {
+            // 清除画布法一
+            context.globalAlpha = 1;
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, 400, 400);
+
+
+            var text = "以升大学生创新实验中心";
+            var companyName = companyName;
+
+            // 绘制印章边框
+            var width = canvas.width / 2;
+            var height = canvas.height / 2;
+            context.lineWidth = 5;
+            context.strokeStyle = "#f00";
+            context.beginPath();
+            context.arc(width, height, 90, 0, Math.PI * 2);//宽、高、半径
+            context.stroke();
+
+            //画五角星
+            create5star(context, width, height, 25, "#f00", 0);
+
+            // 绘制印章名称
+            context.font = '8px 宋体';
+            context.textBaseline = 'middle';//设置文本的垂直对齐方式
+            context.textAlign = 'center'; //设置文本的水平对对齐方式
+            context.lineWidth = 1;
+            context.fillStyle = '#f00';
+            context.save();
+            context.translate(width, height + 60);// 平移到此位置,
+            context.scale(1, 2);//伸缩要先把远点平移到要写字的位置，然后在绘制文字
+            context.fillText(text, 0, 0);//原点已经移动
+            context.restore();
+
+            // 绘制印章单位
+            context.translate(width, height);// 平移到此位置,
+            context.font = '18px 宋体'
+            var count = companyName.length;// 字数
+            var angle = 4 * Math.PI / (3 * (count - 1));// 字间角度
+            var chars = companyName.split("");
+            var c;
+            for (var i = 0; i < count; i++) {
+                c = chars[i];// 需要绘制的字符
+                　　　　　　　　　//绕canvas的画布圆心旋转
+                if (i == 0) {
+                    context.rotate(5 * Math.PI / 6);
+                } else {
+                    context.rotate(angle);
+                }
+                context.save();
+                context.translate(66, 0);// 平移到此位置,此时字和x轴垂直，公司名称和最外圈的距离
+                context.rotate(Math.PI / 2);// 旋转90度,让字平行于x轴
+                context.scale(1, 2);//伸缩画布，实现文字的拉长
+                context.fillText(c, 0, 0);// 此点为字的中心点
+                context.restore();
+            }
+            // 设置画布为最初的位置为原点，旋转回平衡的原位置，用于清除画布
+            context.rotate(-Math.PI / 6);
+            context.translate(0 - canvas.width / 2, 0 - canvas.height / 2);
+
+
+
+            //绘制五角星
+            /**
+             * 创建一个五角星形状. 该五角星的中心坐标为(sx,sy),中心到顶点的距离为radius,rotate=0时一个顶点在对称轴上
+             * rotate:绕对称轴旋转rotate弧度
+             */
+            function create5star(context, sx, sy, radius, color, rotato) {
+                context.save();
+                context.fillStyle = color;
+                context.translate(sx, sy);//移动坐标原点
+                context.rotate(Math.PI + rotato);//旋转
+                context.beginPath();//创建路径
+                var x = Math.sin(0);
+                var y = Math.cos(0);
+                var dig = Math.PI / 5 * 4;
+                for (var i = 0; i < 5; i++) {//画五角星的五条边
+                    var x = Math.sin(i * dig);
+                    var y = Math.cos(i * dig);
+                    context.lineTo(x * radius, y * radius);
+                }
+                context.closePath();
+                context.stroke();
+                context.fill();
+                context.restore();
+            }
+        }
+
+    </script>
+</body>
+</html>*@
+
+
+
+
+<!DOCTYPE html >
+<html>
+<head>
+
+</head>
+
+<body @*onload="autoRowSpan(tb,0,0)"*@>
+    <table id="tb" border="1">
+        <thead>
+            <tr>
+                <td>国家</td>
+                <td>地区</td>
+            </tr>
+        </thead>
+        <tr>
+            <td>中国</td>
+            <td>河南</td>
+        </tr>
+        <tr>
+            <td>中国</td>
+            <td>四川</td>
+        </tr>
+        <tr>
+            <td>中国</td>
+            <td>北京</td>
+        </tr>
+        <tr>
+            <td>美国</td>
+            <td>纽约</td>
+        </tr>
+        <tr>
+            <td>美国</td>
+            <td>洛杉矶</td>
+        </tr>
+        <tr>
+            <td>英国</td>
+            <td>伦敦</td>
+        </tr>
+        <tr>
+            <td>英国</td>
+            <td>伦敦</td>
+        </tr>
+    </table>
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+    <script src="~/Scripts/tablesMergeCell.js"></script>
+    <script>
+        $(function () {
+            //$('#tb').tablesMergeCell({
+            //    cols: [0]
+            //});
+            hebin('tb', 1)
+            console.log($('#tb').rows.length);
+        })
+
+        //function autoRowSpan(tb, row, col) {
+        //    var lastValue = "";
+        //    var value = "";
+        //    var pos = 1;
+        //    for (var i = row; i < tb.rows.length; i++) {
+        //        value = tb.rows[i].cells[col].innerText;
+        //        if (lastValue == value) {
+        //            tb.rows[i].deleteCell(col);
+        //            tb.rows[i - pos].cells[col].rowSpan = tb.rows[i - pos].cells[col].rowSpan + 1;
+        //            pos++;
+        //        } else {
+        //            lastValue = value;
+        //            pos = 1;
+        //        }
+        //    }
+        //}  
+
+     
+
+        function hebin(tables, hjIndex) {
+            tables = document.getElementById(tables);
+            if (hjIndex > 0) {
+                var th = tables.rows[0].insertCell(tables.rows[0].cells.length);
+                th.innerHTML = "合计";
+            }
+            var _rowSpan = 1;
+            var _rowIndex = 0;
+            for (var i = 1; i < tables.rows.length; i++) {
+                if (tables.rows[i].cells[0].innerHTML == tables.rows[_rowIndex].cells[0].innerHTML) {
+                    _rowSpan++;
+                    if (hjIndex > 0) {
+                        tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML = parseFloat(tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].innerHTML) + parseFloat(tables.rows[i].cells[hjIndex - 1].innerHTML);
+                        tables.rows[_rowIndex].cells[tables.rows[_rowIndex].cells.length - 1].rowSpan = _rowSpan;
+                    }
+                    //tables.rows[i].deleteCell(0);
+                    //tables.rows[_rowIndex].cells[0].rowSpan = _rowSpan;
+                }
+                else {
+                    _rowSpan = 1;
+                    _rowIndex = i;
+                    if (hjIndex > 0) {
+                        var td = tables.rows[i].insertCell(tables.rows[i].cells.length);
+                        td.innerHTML = tables.rows[i].cells[hjIndex - 1].innerHTML;
+                    }
+                }
+            }
+        }
+
+    
+    </script>
+</body>
+
+</html> 

@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link href="~/Content/printPage.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="content">
+        <p id="printLogo">
+            <img src="~/images/logo.png" />
+        </p>
+
+        <p id="printProcess" style="line-height:65px;">合同清单</p>
+        <div style="height:48px;">
+           
+        </div>
+        <table cellspacing="0">
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+ $(function() {
+        $.ajax({
+            type: "post",
+            url: "/ERP_Contract/GetPrintData",
+            cache: false,
+            async: false,
+            success: function (response) {
+                var rows = JSON.parse(response);
+                var headCol = Object.keys(rows[0]);
+                console.log(headCol);
+                var headHtml = '';
+                for (var i in headCol) {
+                    headHtml += '<th>' + headCol[i] + '</th>';
+                }
+                $('table>thead>tr').append(headHtml);
+                var tbodyHtml = '';
+                for (var i = 0; i < rows.length; i++) {
+                    //rows[i]['签订日期'] = substringStr(rows[i]['签订日期']);
+                    //rows[i]['交货日期'] = substringStr(rows[i]['交货日期'])
+                    //rows[i]['审核日期'] = substringStr(rows[i]['审核日期'])
+                    var trHtml = ''
+                    for (var j in rows[i]) {
+                        trHtml += '<td>' + rows[i][j] + '</td>';
+                    }
+                    tbodyHtml += '<tr>' + trHtml + '</tr>';
+                }
+                $('table>tbody').append(tbodyHtml);
+                window.print();
+            }
+
+        });
+        });
+        //function substringStr(str) {
+        //    console.log(str);
+        //    if (str == null || str == '' || str == 'null') { return  str='null'};
+        //    if (str.indexOf('T') != -1) {
+        //        var index = str.indexOf('T');
+        //        return str.substring(0, index);
+        //    }
+        //    return str;
+        //}
+    </script>
+</body>
+</html>
+

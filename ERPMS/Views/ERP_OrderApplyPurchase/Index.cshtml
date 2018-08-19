@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #orderApply_form .combo, #orderApply_form .datebox, #orderApply_form .validatebox {
+        height: 20px;
+        width: 120px !important;
+    }
+
+    #orderApply_form .textbox {
+        height: 20px;
+    }
+
+    #orderApply_form #orderApply_exp {
+        min-width: 350px !important;
+    }
+
+</style>
+<div style="padding:5px 10px">
+    
+    <div>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_refresh"><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderApply_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" ><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+
+        <input type="hidden" id="orderApply_page" value="0" readonly />
+        <input type="hidden" id="orderApply_total" value="-1" readonly />
+      </div>
+    <div class="column"><span class="current">采购申请单</span> &nbsp;&nbsp;<span id="orderApply_applyNotext" style="color:red;"></span></div>
+    <form id="orderApply_form" class="myform">
+         <table class="kv-table">
+                        <tbody>
+                            <tr>
+                                <td class="kv-label">申请部门</td>
+                                <td class="kv-content">
+                                    <input type="hidden" readonly id="orderApply_applyNo" name="申请单号" />
+                               
+                                    <input class="easyui-combobox" id="orderApply_dept" name="部门编码" />
+                                </td>
+                                <td class="kv-label">制单人</td>
+                                <td class="kv-content"><input  name="制单人编码" id="orderApply_zhidanren" /></td>
+                                <td class="kv-label">申请人</td>
+                                <td class="kv-content"><input id="orderApply_applyPerson" name="申请人" /></td>
+                                <td class="kv-label">申请日期</td>
+                                <td class="kv-content"><input class="easyui-datebox" name="日期" /></td>
+                            </tr>
+                            <tr>
+                                <td class="kv-label">申请说明</td>
+                                <td class="kv-content" colspan="5"><input class="easyui-textbox" id="orderApply_exp" name="摘要" /></td>
+
+                                <td class="kv-label">单据类型</td>
+                                <td class="kv-content"><input class="easyui-combobox" id="orderApply_ticket" name="单据类型" /></td>
+                            </tr>
+
+                            <tr>
+                                <td class="kv-label">物料类别</td>
+
+                                <td class="kv-content"><input class="easyui-combobox" id="orderApply_materialType" data-options=" valueField: 'Id', textField: 'Key',panelHeight:60,data: [{ Id: '2', Key: '材料' },{ Id: '1', Key: '纸张'}]" /></td>
+                                <td class="kv-label">负责人</td>
+                                <td class="kv-content"><input  id="orderApply_leading" name="负责人"></td>
+                                <td class="kv-label">审核人</td>
+                                <td class="kv-content"><input readonly id="orderApply_auditorPerson" name="审核人编码" /></td>
+                                <td class="kv-label">审核日期</td>
+                                <td class="kv-content"><input class="easyui-datebox" name="审核日期" id="" readonly /></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+     </form>
+    <div style="height:190px;margin-top:10px;">
+        <div id="orderApply_datagrid"></div>
+                    <!--右击菜单-->
+            <div id="orderApply_menu" class="easyui-menu" style="width: 50px; display: none;">
+                <div id="orderApply_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+                <div id="orderApply_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                <div id="orderApply_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                <div id="orderApply_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                <div id="orderApply_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        erpRequire(['order/order_apply'])
+    </script>

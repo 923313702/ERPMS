@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div style="padding:5px 10px">
+    <div>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_pre" ><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderLogistics_next" ><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" ><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+
+        <input type="hidden" id="orderLogistics_page" value="0" readonly />
+        <input type="hidden" id="orderLogistics_total" value="-1" readonly />
+    </div>
+    <div class="column"><span class="current">物流申请单</span> &nbsp;&nbsp;<span id="orderLogistics_logistics_text" style="color:red;"></span></div>
+    <form id="orderLogistics_form" class="myform">
+        <table class="kv-table">
+            <tbody>
+                <tr>
+                    <td class="kv-label">公司名称</td>
+                    <td class="kv-content">
+                        <input type="hidden" name="申请单号" readonly id="orderLogistics_logisticsNo"/>
+                        <input type="hidden" name="审核人编码" id="orderLogistics_auditorPerson"/>
+                        <input class="easyui-combobox" required  name="物流公司编码" id="orderLogistics_companyNo"/>
+                    </td>
+                    <td class="kv-label">制单人</td>
+                    <td class="kv-content"><input class="easyui-textbox" /></td>
+                    <td class="kv-label">日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="日期" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">收货地址</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="到货地址"/></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content" ><input class="easyui-textbox" name="联系方式"/></td>
+                    <td class="kv-label">发货人</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="发货人"/></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">收货地址</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="到货地址1" /></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content" ><input class="easyui-textbox" name="联系方式1"/></td>
+                    <td class="kv-label">物流经办人</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="物流经办人" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">收货地址</td>
+                    <td class="kv-content" ><input class="easyui-textbox" name="到货地址2" /></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="联系方式2" /></td>
+                    <td class="kv-label">付款标志</td>
+                    <td class="kv-content"><input class="easyui-textbox"  name="结账标志"></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">备注说明</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-textbox" style="min-width:350px;"  name="摘要"/></td>
+                    <td class="kv-label">制单日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="制单日期"/></td>
+                </tr>
+
+                <tr>
+                   
+                    <td class="kv-label">运费金额</td>
+                    <td class="kv-content"><input class="easyui-numberbox"  name="运费金额" id="orderLogistics_freight"/></td>
+                    <td class="kv-label">进仓费</td>
+                    <td class="kv-content"><input class="easyui-numberbox" name="进仓费" id="orderLogistics_jincang"/></td>
+                    <td class="kv-label">总金额</td>
+                    <td class="kv-content"><input class="easyui-numberbox"  name="金额" id="orderLogistics_Totalamount"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div style="height:230px;margin-top:10px;">
+        <div id="orderLogistics_datagrid"></div>
+        <!--右击菜单-->
+        <div id="orderLogistics_menu" class="easyui-menu" style="width: 50px; display: none;">
+            <div id="orderLogistics_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+            <div id="orderLogistics_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+            <div id="orderLogistics_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+            <div id="orderLogistics_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+            <div id="orderLogistics_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+     
+        </div>
+    </div>
+</div>
+<script>
+    erpRequire(['order/order_logistics'])
+</script>

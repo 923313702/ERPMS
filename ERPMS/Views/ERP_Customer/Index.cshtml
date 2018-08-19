@@ -1,0 +1,188 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #customer_form .combo, #customer_form .datebox, #customer_form .validatebox, #customer_form .customerText {
+        height: 20px;
+        width: 120px !important;
+    }
+
+    #customer_form .textbox {
+        height: 20px;
+    }
+
+    #customer_form .customer_Text {
+        width: 270px !important;
+    }
+</style>
+
+<!--客户档案-->
+<div style="padding: 10px 5px 5px 10px;height:97%;">
+    <div class="column"><span class="current">客户档案</span></div>
+    <div style="height:90%;width:100%">
+        <div id="ERP_customer"></div>
+        <div id="ERP_customer_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="customer_tb_add"> <i class="fa fa-plus-square fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="customer_tb_edit"> <i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="customer_tb_remove"> <i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+
+            @*<a href="#" class="easyui-linkbutton" plain="true"> <i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+            <a href="#" class="easyui-linkbutton" plain="true" id="customer_tb_excel"> <i class="fa fa-file-excel-o fa-lg"></i>&nbsp;excel</a>
+            @*<a href="#" class="easyui-linkbutton" plain="true"> <i class="fa fa-download fa-lg"></i>&nbsp;下载</a>*@
+            <a href="#" class="easyui-linkbutton" plain="true" id="customer_tb_print"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+            <input  id="customer_saleMan" data-options="prompt:'业务员编码'" />
+        </div>
+
+    </div>
+    <div id="customer_dialog" class="easyui-dialog" title="添加客户" data-options="modal:true,closed:true,toolbar:'#customer_toolbar_buttons'" style="width:950px;height:437px;">
+        <form id="customer_form" class="myform">
+            <table class="kv-table">
+                <tbody>
+                    <tr>
+                        <td class="kv-label">名称</td>
+                        <td class="kv-content" colspan="3"><input class="easyui-textbox customer_Text" id="customer_name" name="客户名称"  required/>
+                        <input type="hidden" name="客户编码"/>
+                        </td>
+                        <td class="kv-label">简称</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="客户简称"  /></td>
+                        <td class="kv-label">别名</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="别名" /></td>
+                     
+                    </tr>
+                    <tr>
+                        <td class="kv-label">网络注册号</td>
+                        <td class="kv-content"><input class="easyui-numberbox customerText" name="网络注册号" /></td>
+                        <td class="kv-label">业务员</td>
+                        <td class="kv-content"><input class="easyui-combobox" name="业务员编码" id="customer_saleMan2"  data-options=" valueField: 'Id', textField: 'Key'"/></td>
+                        <td class="kv-label">使用状态</td>
+                        <td class="kv-content"><input type="checkbox" checked name="使用状态" value="1" />使用</td>
+
+                        <td class="kv-label">国家</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="国家" /></td>
+                 
+                  
+
+                    </tr>
+                    <tr>
+                        <td class="kv-label">省份</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="省份" /></td>
+                        <td class="kv-label">城市</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="城市" /></td>
+                        <td class="kv-label">所属区域</td>
+                        <td class="kv-content" colspan="3"><input class="easyui-textbox customer_Text" name="城区" /></td>
+                       
+                    
+                    </tr>
+                    <tr>
+                        <td class="kv-label">地址</td>
+                        <td class="kv-content" colspan="3"><input class="easyui-textbox customer_Text" name="地址" /></td>
+                        <td class="kv-label">联系人</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="联系人" /></td>
+                        <td class="kv-label">联系电话</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="电话" /></td>
+                   
+                      
+                    </tr>
+                    <tr>
+                        <td class="kv-label">负责人</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="负责人" /></td>
+                        <td class="kv-label">负责人电话</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="负责人电话" /></td>
+                        <td class="kv-label">财务负责人</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="财务负责人" /></td>
+                        <td class="kv-label">财务电话</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="财务电话" /></td>
+                      
+                    
+                    </tr>
+                    <tr>
+                        <td class="kv-label">仓库人员</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="仓库负责人" /></td>
+                        <td class="kv-label">仓库电话</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="仓库电话" /></td>
+                        <td class="kv-label">货运人员</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="货运联系人" /></td>
+                        <td class="kv-label">货运电话</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="货运电话" /></td>
+                      
+                      
+                     
+                    </tr>
+                    <tr>
+                        <td class="kv-label">仓库地址</td>
+                        <td class="kv-content" colspan="3"><input class="easyui-textbox customer_Text" name="仓库地址" /></td>
+                        <td class="kv-label">传真</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="传真" /></td>
+                        <td class="kv-label">邮编</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="邮编" /></td>
+                      
+                       
+                       
+                    </tr>
+                    <tr>
+                        <td class="kv-label">网址</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="网址" /></td>
+                        <td class="kv-label">客户类别</td>
+                        <td class="kv-content"><input class="easyui-combobox customerText" name="客户类别"data-options=" valueField: 'Id', textField: 'Key',panelHeight:80,data: [{ Id: '公司', Key: '公司' },{ Id: '新客户', Key: '新客户'},{ Id: '老客户', Key: '老客户'},{ Id: '个人', Key: '个人'}]"   /></td>
+                        <td class="kv-label">Email</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="email" /></td>
+                        <td class="kv-label">开户银行</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="开户银行" /></td>
+                     
+                     
+                    
+                    </tr>
+                    <tr>
+                        <td class="kv-label">客户级别</td>
+                        <td class="kv-content"><input class="easyui-combobox customerText" name="客户级别"data-options=" valueField: 'Id', textField: 'Key',panelHeight:60,data: [{ Id: '一级', Key: '一级' },{ Id: '二级', Key: '二级'},{ Id: '三级', Key: '三级'}]"  /></td>
+                        <td class="kv-label">税号</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="税号" /></td>
+                        <td class="kv-label">微信号</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="微信号码" /></td>
+                        <td class="kv-label">信用额度</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="信用额度" /></td>
+                       
+                    
+                    </tr>
+                    <tr>
+                        <td class="kv-label">银行账号</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="银行账号" /></td>
+                        <td class="kv-label">数量标志</td>
+                        <td class="kv-content"><input type="checkbox" checked name="zhidanStart" />计算来料数量</td>
+                        <td class="kv-label">金额标志</td>
+                        <td class="kv-content"><input type="checkbox"  name="金额标志" /> 计算库存金额</td>
+                        <td class="kv-label">QQ号码</td>
+                        <td class="kv-content"><input class="easyui-textbox customerText" name="QQ号码" /></td>
+                     
+                    </tr>
+                    <tr>
+                        <td class="kv-label">账期</td>
+                        <td class="kv-content"><input class="easyui-numberbox customerText" name="账期" /></td>
+
+                        <td class="kv-label">计价体系</td>
+                        <td class="kv-content"><input class="easyui-combobox customerText" name="计价体系" data-options=" valueField: 'Id', textField: 'Key',panelHeight:60,data: [{ Id: '本场价', Key: '本场价' },{ Id: '客户价', Key: '客户价'}]" /></td>
+                        <td class="kv-label">备注</td>
+                        <td class="kv-content" colspan="3"> <input class="easyui-textbox customer_Text" name="备注" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="customer_toolbar_buttons">
+        <table cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <td>
+                    <a href="#" class="easyui-linkbutton" plain="true" id="customer_go" flag=""><i class="fa fa-check fa-lg"></i>&nbsp;确定</a>
+                    <a href="#" class="easyui-linkbutton" plain="true" id="customer_cancel"><i class="fa fa-times fa-lg"></i>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <iframe src="" frameborder="0" id="customer_printIframe" name="printIframe" style="visibility:hidden;height:0px;"></iframe>
+
+</div>
+<script>
+    erpRequire(['customer/customer'])
+</script>

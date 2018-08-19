@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link href="~/Content/printPage.css" rel="stylesheet" />
+</head>
+<body>
+  
+    <div id="content">
+        <p id="printLogo">
+            <img src="~/images/logo.png" />
+        </p>
+        <p id="printProcess">工艺编码表</p>
+        <div style="height:48px;">
+            <p id="processCategory"> 工艺类别 &nbsp;&nbsp;&nbsp;<span>hello</span></p>
+        </div>
+        <table cellspacing="0">
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+ $(function() {
+        $.ajax({
+            type: "post",
+            url: "/ERP_Process/GetPageData",
+            cache: false,
+            async: false,
+            success: function (response) {
+                var headCol = Object.keys(response[0]);
+                console.log(headCol);
+                var headHtml = '';
+                for (var i in headCol) {
+                    headHtml += '<th>' + headCol[i] + '</th>';
+                }
+                $('table>thead>tr').append(headHtml);
+                var tbodyHtml = '';
+                for (var i = 0; i < response.length; i++) {
+                    var trHtml = ''
+                    for (var j in response[i]) {
+                        trHtml += '<td>' + response[i][j] + '</td>';
+                    }
+                    tbodyHtml += '<tr>' + trHtml + '</tr>';
+                }
+                $('table>tbody').append(tbodyHtml);
+                window.print();
+            }
+
+        });
+});
+    </script>
+</body>
+</html>
+

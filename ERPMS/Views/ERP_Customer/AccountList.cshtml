@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+<!--客户对账单-->
+<div style="padding: 10px 5px 5px 10px;">
+    <div class="mytools">
+    
+   
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_import"><i class="fa fa-arrow-circle-down fa-lg"></i>&nbsp;导入</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" id="accountList_refresh"><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_excel"> <i class="fa fa-file-excel-o fa-lg"></i>&nbsp;excel</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="accountList_print"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+        <input type="hidden" id="accountList_page" value="0" readonly />
+        <input type="hidden" id="accountList_total" value="-1" readonly />
+    </div>
+    <div style="height:50px;"></div>
+
+    <div class="column"><span class="current">客户对账单号</span> &nbsp;&nbsp;<span id="accountList_accountNo_text" style="color:red;"></span></div>
+    <form id="accountList_form">
+        <table class="kv-table">
+            <tbody>
+
+                <tr>
+                    <td class="kv-label">客户名称</td>
+                    <td class="kv-content"><input class="easyui-combobox" id="accountList_customer" required name="客户编码"/>
+                    <input type="hidden" id="accountList_accountNo" name="对账单号"/>
+                    <input type="hidden" name="审核人编码" id="accountList_auditorNo"/>
+                    </td>
+                    <td class="kv-label">开始日期</td>
+                    <td class="kv-content"><input class="easyui-datebox"required id="accountList_dataStart" name="开始日期"/></td>
+                    <td class="kv-label">结束日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" required validType="dateCompare['#accountList_dataStart']" name="结束日期"/></td>
+                    <td class="kv-label">对账日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" id="accountList_date" readonly name="日期"/></td>
+                </tr>
+             
+            </tbody>
+        </table>
+    </form>
+    <div style="height:450px;margin-top:10px;">
+        <div id="accountList_datagrid"></div>
+        <!--右击菜单-->
+        <div id="accountList_menu" class="easyui-menu" style="width: 50px; display: none;">
+            <div id="accountList_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+            <div id="accountList_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+            <div id="accountList_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+            <div id="accountList_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+            <div id="accountList_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+        </div>
+    </div>
+    <iframe src="" frameborder="0" id="accountListIframe" style="visibility:hidden;height:0px;width:0px;"></iframe>
+</div>
+<script>
+    erpRequire(['customer/accountList'])
+</script>

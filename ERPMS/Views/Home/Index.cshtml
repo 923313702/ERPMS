@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Content/mycss.css" rel="stylesheet" />
+<div id="pf-sider">
+    <h2 class="pf-model-name">
+        <span class="iconfont">&#xe64a;</span>
+        <span class="pf-name">组织管理</span>
+        <span class="toggle-icon"></span>
+    </h2>
+    <div id="treeMenu" class="left-tree"></div>
+
+</div>
+
+<div id="pf-page">
+  
+            <div id="contentTabs" class=" easyui-tabs1" fit="true" border="true" style="width:90%;height:100%">
+      
+     </div>
+</div>
+
+
+@section scripts{
+
+
+
+
+<script>
+    var require = {
+        config: {
+            action: "home/home"
+        }
+    }
+</script>
+<script src="~/Scripts/require.js" data-main="/Scripts/require-config.js"></script>
+
+    }
+ 

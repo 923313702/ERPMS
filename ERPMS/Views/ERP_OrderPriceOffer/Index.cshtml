@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #orderPriceOffer_form .combo, #orderPriceOffer_form .datebox, #orderPriceOffer_form .textbox {
+        height: 20px;
+        width: 120px !important;
+    }
+
+    #orderPriceOffer_form .textbox {
+        height: 20px;
+    }
+
+</style>
+<div style="padding:5px 10px">
+    <div>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderPriceOffer_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderPriceOffer_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderPriceOffer_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderPriceOffer_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+    </div>
+    <div class="column"><span class="current">报价单</span> &nbsp;&nbsp;<span id="orderPriceOffer_offerNo_text" style="color:red;"></span></div>
+    <form id="orderPriceOffer_form" class="myform">
+        <table class="kv-table">
+            <tbody>
+                <tr>
+                    <td class="kv-label">客户名称</td>
+                    <td class="kv-content">
+                        <input class="easyui-combobox" name="客户编码" id="orderPriceOffer_customer"/>
+                        <input type="hidden" name="报价单号" id="orderPriceOffer_offerNo"/>
+                    </td>
+                    <td class="kv-label">订单号</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="订单号" required /></td>
+                    <td class="kv-label">订单名称</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="订单名称" /></td>
+
+                    <td class="kv-label">业务员</td>
+                    <td class="kv-content"><input class="easyui-combobox" name="业务员编码" id="orderPriceOffer_saleMan" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">成品尺寸</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="成品尺寸"   /></td>
+                    <td class="kv-label">成品开数</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="开数编码" /></td>
+                    <td class="kv-label">装订方法</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="装订方法"  /></td>
+                    <td class="kv-label">印张数</td>
+                    <td class="kv-content"><input class="easyui-numberbox" name="印张"  /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">成品数量</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="成品数量" /></td>
+                    <td class="kv-label">计量单位</td>
+                    <td class="kv-content"><input class="easyui-combobox" name="计量单位" id="orderPriceOffer_unit" /></td>
+                    <td class="kv-label">报价日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="制单日期" /></td>
+                    <td class="kv-label">审核人</td>
+                    <td class="kv-content"><input class="easyui-combobox" id="orderPriceOffer_auditorNo" name="审核人编码" readonly/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div style="height:170px;margin-top:10px;">
+        <div id="offerDetail_datagrid"></div>
+        <!--右击菜单-->
+        <div id="offerDetial_menu" class="easyui-menu" style="width: 50px; display: none;">
+            <div id="offerDetail_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+            <div id="offerDetail_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+            <div id="offerDetail_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+            <div id="offerDetail_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+            <div id="offerDetail_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+        </div>
+    </div>
+    <div style="height:170px;">
+        <div id="offerPrice_datagrid"></div>
+        <!--右击菜单-->
+        <div id="offerPrice_menu" class="easyui-menu" style="width: 50px; display: none;">
+            <div id="offerPrice_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+            <div id="offerPrice_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+            <div id="offerPrice_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+            <div id="offerPrice_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+            <div id="offerPrice_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+        </div>
+    </div>
+</div>
+<script>
+    erpRequire(['order/orderPrice_offer'])
+</script>

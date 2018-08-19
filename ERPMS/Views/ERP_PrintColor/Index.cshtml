@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+<!--  印色编码表Html-->
+<div style="padding: 10px 5px 5px 10px;height:97%;">
+    <div class="column"><span class="current">印色编码表</span></div>
+    <div style="height:90%;width:100%">
+        <div id="ERP_printColor"></div>
+        <div id="ERP_printColor_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="printColor_tb_add"> <i class="fa fa-plus-square fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="printColor_tb_edit"> <i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="printColor_tb_remove"> <i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="printColor_tb_save" flag=""> <i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="printColor_tb_revort"> <i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</a>
+            <a href="#" class="easyui-linkbutton" plain="true"> <i class="fa fa-file-excel-o fa-lg"></i>&nbsp;excel</a>
+            <a href="#" class="easyui-linkbutton" plain="true"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+        </div>
+    </div>
+</div>
+<script>
+   erpRequire(['Basics/printColor'])
+</script>

@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div style="padding: 10px 5px 5px 10px;height:97%;">
+    <div class="column"><span class="current">岗位权限</span></div>
+    <div style="height:90%;width:100%">
+        <div id="ERP_postAuthorize"></div>
+        <div id="ERP_postAuthorize_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="postAuthorize_tb_add"> <i class="fa fa-plus-square fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="postAuthorize_tb_remove"> <i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+            <input class="easyui-textbox" id="postAuthorize_name" data-options="prompt:'请输入岗位名称'" />
+            <a href="#" class="easyui-linkbutton" plain="true" id="postAuthorize_tb_search"> <i class="fa fa-search fa-lg"></i>&nbsp;查找</a>
+        </div>
+        <!-- 权限编辑窗口 -->
+        <div id="post_dialog" class="easyui-dialog" title="权限编辑" data-options="modal:true,toolbar:'#tbs'" closed="true"
+             style="width: 500px; height: 300px; ">
+            <div style="margin:auto;width:200px;">
+                <ul id="postAuthorize_tree"></ul>
+
+            </div>
+        </div>
+        <div id="tbs">
+            <a href="#" class="easyui-linkbutton" flag="" id="submit" ><i class="fa fa-plus fa-lg"></i>&nbsp;确定</a>
+            <a href="#" class="easyui-linkbutton"  flag="" id="cancel"><i class="fa fa-remove fa-lg"></i>&nbsp;取消</a>
+
+        </div>
+    </div>
+</div>
+<script>
+    erpRequire(['sys/postAuthorize'])
+</script>

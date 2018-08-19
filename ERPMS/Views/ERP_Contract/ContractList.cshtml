@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<div style="padding:5px 10px;height:88%;">
+    <div>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contractList_search"> <i class="fa fa-search fa-lg"></i>&nbsp;查找</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" id="contractList_refresh" ><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+        <a href="#" class="easyui-linkbutton" plain="true" id="contractList_print"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" id="contractList_excel"> <i class="fa fa-file-excel-o fa-lg"></i>&nbsp;excel</a>*@
+    </div>
+    <div class="column"><span class="current">合同清单</span></div>
+    <div id="contractList_datagrid"> </div>
+    <div id="contractList_dialog" class="easyui-dialog" title="查询条件" data-options="modal:true,closed:true,toolbar:'#contractList_toolbar_buttons'" style="width:600px;height:210px;padding:10px;">
+        <form id="contractList_form">
+            <table class="kv-table">
+                <tbody>
+                    <tr>
+                        <td class="kv-label" colspan="2">合同号</td>
+                        <td class="kv-content" colspan="2"><input class="easyui-combobox" name="contractNo" id="contractList_contractNo" /></td>
+                    </tr>
+                    <tr>
+                       
+                        <td class="kv-label">客户名称</td>
+                        <td class="kv-content"><input class="easyui-combobox" name="customerNo" id="contractList_customerNo" /></td>
+                        <td class="kv-label">业务员</td>
+                        <td class="kv-content"><input class="easyui-combobox" name="saleMan" id="contractList_saleMan" /></td>
+
+                    </tr>
+                    <tr>
+                        <td class="kv-label" >制单开始日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" name="zhidanStart" /></td>
+                        <td class="kv-label">制单结束日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" name="zhidanEnd"  id="contractList_zhidanend"/></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="contractList_toolbar_buttons">
+        <table cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <td>
+                    <a href="#" class="easyui-linkbutton" plain="true" id="contractList_go"><i class="fa fa-check fa-lg"></i>&nbsp;确定</a>
+                    <a href="#" class="easyui-linkbutton" plain="true" id="contractList_cancel"><i class="fa fa-times fa-lg"></i>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <iframe src="" frameborder="0" id="contractListIframe"  style="visibility:hidden;height:0px;"></iframe>
+</div>
+<script>
+    erpRequire(['contract/contractList'])
+</script>

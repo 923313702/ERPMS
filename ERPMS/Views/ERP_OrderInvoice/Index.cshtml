@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div style="padding:5px 10px;">
+    <div>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_payment"><i class="fa fa-jpy fa-lg"></i>&nbsp;结清</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" ><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+
+        <input type="hidden" id="orderInvoice_page" value="0" readonly />
+        <input type="hidden" id="orderInvoice_total" value="-1" readonly />
+    </div>
+    <div class="column"><span class="current">发货申请单</span> &nbsp;&nbsp;<span id="orderInvoice_text" style="color:red;"></span></div>
+    <form id="orderinvoice_form" class="myform">
+        <table class="kv-table">
+            <tbody>
+                <tr>
+                    <td class="kv-label">申请人</td>
+                    <td class="kv-content">
+                        <input type="hidden" id="orderInvoiceApplyNo" name="申请单号" />
+                        <input type="hidden" id="orderInvoiceAuditorNo" name="审核人编码" />
+                        <input class="easyui-combobox" id="orderinvoice_applyNo" name="申请人编码" required />
+                    </td>
+                    <td class="kv-label">订单号</td>
+                    <td class="kv-content"><input class="easyui-combobox" id="orderinvoice_orderNo" name="订单号" required /></td>
+                    <td class="kv-label">日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="日期" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">印品名称</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-textbox" style="min-width:350px;" name="印品名称" /></td>
+                    <td class="kv-label">订单数量</td>
+                    <td class="kv-content"><input class="easyui-numberbox" name="数量" id="orderinvoice_orderNumber" required /></td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">客户名称</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-combobox" style="min-width:350px;" id="orderinvoice_customer" name="客户编码" required /></td>
+                    <td class="kv-label">发货数量</td>
+                    <td class="kv-content"><input class="easyui-numberbox" name="发货数量" validType="rangeTo['#orderinvoice_orderNumber']" required /></td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">送货地址</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-textbox" name="发货地址" style="min-width:350px;" required /></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="联系方式" required validType='PhoneOrMobile' /></td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">送货地址</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-textbox" style="min-width:350px;" name="发货地址二" /></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="联系方式二" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">结款说明</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="发货地址三"></td>
+                    <td class="kv-label">结款标志</td>
+                    <td class="kv-content"><input type="checkbox" disabled="disabled" id="orderinvoice_panymentflag" name="结款标识" value="1" /></td>
+                    <td class="kv-label">标志时间</td>
+                    <td class="kv-content"><input class="easyui-datebox" id="orderinvoice_date" name="标识日期" readonly /></td>
+                </tr>
+                <tr>
+
+                    <td class="kv-label">备注说明</td>
+                    <td class="kv-content" colspan="5"><input class="easyui-textbox" style="min-width:500px;" name="备注" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">制单人</td>
+                    <td class="kv-content"><input class="easyui-combobox" name="制单人编码" id="orderinvoice_person"></td>
+                    <td class="kv-label">发货人</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="发货人编码" required /></td>
+                    <td class="kv-label">审核人</td>
+                    <td class="kv-content"><input class="easyui-combobox" readonly id="orderinvoice_aud" name="审核人编码" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">制单日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="制单日期" required></td>
+                    <td class="kv-label">审核日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="审核日期" id="orderinvoice_auditorTime" readonly /></td>
+                    <td class="kv-label">发货标志</td>
+                    <td class="kv-content"><input class="easyui-combobox" data-options=" valueField: 'Id', textField: 'Key',panelHeight:100,data: [{ Id: '0', Key: '未发货' },{ Id: '1', Key: '已发货' }]" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script>
+    erpRequire(['order/order_invoice'])
+</script>

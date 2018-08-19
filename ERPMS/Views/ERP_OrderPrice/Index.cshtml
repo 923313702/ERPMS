@@ -1,0 +1,179 @@
+﻿
+@{
+    Layout = null;
+}
+ <div style="padding: 10px 5px 5px 10px;">
+     <div class="mytools">
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_import"><i class="fa fa-arrow-circle-down fa-lg"></i>&nbsp;导入</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a> 
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_offer"><i class="fa fa-gg-circle" aria-hidden="true"></i>&nbsp;报价</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_refresh"><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>
+
+         <a href="#" class="easyui-linkbutton" plain="true" id="orderPrice_print"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+         <input type="hidden" id="orderPrice_page" value="0" readonly />
+         <input type="hidden" id="orderPrice_total" value="-1" readonly />
+     </div>
+     <div style="height:50px;" ></div>
+ 
+         <div class="column"><span class="current">业务计价单</span> &nbsp;&nbsp;<span id="orderPrice_orderNo_text" style="color:red;"></span></div>
+         <form id="orderPrice_form">
+             <table class="kv-table">
+                 <tbody>
+                     <tr>
+                         <td class="kv-label">订单名称</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" required name="订单名称" />
+                             <input type="hidden" readonly id="orderPrice_orderNo" name="订单号" />
+                             <input type="hidden" readonly id="orderPrice_auditorNo" name="计价审核人编码" />
+                         </td>
+                         <td class="kv-label">客户名称</td>
+                         <td class="kv-content"><input class="easyui-combobox" id="orderPrice_customer" name="客户编码" /></td>
+                         <td class="kv-label">业务员</td>
+                         <td class="kv-content"><input class="easyui-combobox" id="orderPrice_staff" name="业务员编码" /></td>
+                         <td class="kv-label">合同号</td>
+                         <td class="kv-content"><input class="easyui-textbox" name="合同编码" /></td>
+
+                     </tr>
+                     <tr>
+                         <td class="kv-label">印品类别</td>
+                         <td class="kv-content"><input class="easyui-combobox" id="orderPrice_pCategory" name="印品类别编码" /></td>
+
+                         <td class="kv-label">客户类型</td>
+                         <td class="kv-content"><input class="easyui-combobox" name="客户类型" data-options=" valueField: 'Id', textField: 'Key',panelHeight:100,data: [{ Id: '新客户', Key: '新客户' },{ Id: '公司', Key: '公司'}]" /></td>
+                         <td class="kv-label">预收金额</td>
+                         <td class="kv-content"><input class="easyui-numberbox" name="预收金额" /></td>
+                         <td class="kv-label">产品级别</td>
+                         <td class="kv-content">
+                             <input class="easyui-combobox" name="产品级别" data-options=" valueField: 'Id', textField: 'Key',panelHeight:100,data: [{ Id: 'A+', Key: 'A+' },{ Id: 'A', Key: 'A' },{ Id: 'B', Key: 'B'},{ Id: 'C', Key: 'C'}]" />
+                         </td>
+                     </tr>
+                     <tr>
+
+                         <td class="kv-label">成品数量</td>
+                         <td class="kv-content"><input class="easyui-numberbox" name="成品数量" /></td>
+                         <td class="kv-label">计量单位</td>
+                         <td class="kv-content"><input class="easyui-combobox" name="计量单位" /></td>
+                         <td class="kv-label">成品尺寸</td>
+                         <td class="kv-content"><input class="easyui-textbox" name="成品尺寸" /></td>
+                         <td class="kv-label">单据类型</td>
+                         <td class="kv-content"><input class="easyui-combobox" name="单据类型" /></td>
+                     </tr>
+                     <tr>
+                         <td class="kv-label">账期</td>
+                         <td class="kv-content">
+                             <input class="easyui-combobox" name="账期" data-options=" valueField: 'Id',textField: 'Key', panelHeight:100,data: [{ Id: '0天', Key: '0天' },{ Id: '30天', Key: '30天' },{ Id: '45天', Key: '45天' },{ Id: '60天', Key: '60天' },{ Id: '90天', Key: '90天'},{Id: '180天',Key: '180天'}]" />
+
+                         </td>
+                         <td class="kv-label">结款方式</td>
+                         <td class="kv-content">
+                             <input class="easyui-combobox" name="结算方式" data-options=" valueField: 'Id', textField: 'Key',panelHeight:100,data: [{ Id: '月结', Key: '月结' },{ Id: '现结', Key: '现结' },{ Id: '提货现结', Key: '提货现结'}]" />
+                         </td>
+                         <td class="kv-label">税率</td>
+                         <td class="kv-content">
+                             <input class="easyui-combobox" name="税率" data-options=" valueField: 'Id', textField: 'Key',panelHeight:100,data: [{ Id: '0', Key: '0' },{ Id: '0.17', Key: '0.17' },{ Id: '0.03', Key: '0.03'},{ Id: '0.05', Key: '0.05'}]">
+                         </td>
+                         <td class="kv-label">开票金额</td>
+                         <td class="kv-content"><input class="easyui-numberbox" name="开票金额" /></td>
+                     </tr>
+                     <tr>
+                         <td class="kv-label">材料费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_cailiao" readonly />
+                             <input type="hidden" name="材料费" id="_orderPrice_cailiao" readonly />
+                         </td>
+                         <td class="kv-label">设计费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_sheji" readonly />
+                             <input type="hidden" name="设计费" id="_orderPrice_sheji" readonly />
+                         </td>
+                         <td class="kv-label">CPT费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_cpt" readonly />
+                             <input type="hidden" name="CTP版费" id="_orderPrice_cpt" readonly />
+
+                         </td>
+                         <td class="kv-label">印刷费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_yinshua" readonly />
+                             <input type="hidden" name="印制费" id="_orderPrice_yinshua" readonly />
+                         </td>
+                     </tr>
+                     <tr>
+                         <td class="kv-label">加工费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_jiagong" readonly />
+                             <input type="hidden" name="加工费" id="_orderPrice_jiagong" readonly />
+                         </td>
+                         <td class="kv-label">手工费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_shougong" readonly />
+                             <input type="hidden" name="手工费" id="_orderPrice_shougong" readonly />
+                         </td>
+                         <td class="kv-label">覆膜费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_fumo" readonly />
+                             <input type="hidden" name="覆膜费" id="_orderPrice_fumo" readonly />
+                         </td>
+                         <td class="kv-label">返款</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_fankuan" readonly />
+                             <input type="hidden" name="返款金额" id="_orderPrice_fankuan" readonly />
+                         </td>
+                     </tr>
+
+                     <tr>
+                         <td class="kv-label">其他费用</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_qita" readonly />
+                             <input type="hidden" name="其他金额" id="_orderPrice_qita" readonly />
+                         </td>
+                         <td class="kv-label">税费</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_shuifei" readonly />
+                             <input type="hidden" name="税费" id="_orderPrice_shuifei" readonly />
+                         </td>
+                         <td class="kv-label">调节项</td>
+                         <td class="kv-content"><input class="easyui-textbox" name="调节项" /></td>
+                         <td class="kv-label">合计</td>
+                         <td class="kv-content">
+                             <input class="easyui-textbox" id="orderPrice_count" readonly />
+                             <input type="hidden" name="金额" id="_orderPrice_count" readonly />
+                         </td>
+                     </tr>
+                 </tbody>
+             </table>
+         </form>
+         <div style="height:240px;margin-top:10px;">
+             <div id="orderPrice_datagrid"></div>
+             <!--右击菜单-->
+             <div id="orderPrice_menu" class="easyui-menu" style="width: 50px; display: none;">
+                 @*<div id="order_material_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>*@
+                 <div id="orderPrice_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                 <div id="orderPrice_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                 <div id="orderPrice_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                 <div id="orderPrice_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+             </div>
+         </div>
+     </div>
+   <!--报价-->
+     <div id="orderPriceOffer_dialog"></div>
+<script>
+    erpRequire(['order/orderPrice'])
+
+</script>
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+<!-- 客户日志记录表打印Html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link href="~/Content/printPage.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="content">
+        <p id="printLogo">
+            <img src="~/images/logo.png" />
+        </p>
+        <p id="printProcess" style="line-height:80px;">客户日志记录表</p>
+        <div style="height:48px;">
+       
+        </div>
+        <table cellspacing="0">
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+ $(function() {
+        $.ajax({
+            type: "post",
+            url: "/ERP_Customer/GetLogPrintData",
+            cache: false,
+            async: false,
+            success: function (response) {
+                var res = JSON.parse(response);
+                var headCol = Object.keys(res[0]);
+                var headHtml = '';
+                for (var i in headCol) {
+                    headHtml += '<th>' + headCol[i] + '</th>';
+                }
+                $('table>thead>tr').append(headHtml);
+                var tbodyHtml = '';
+                for (var i = 0; i < res.length; i++) {
+                    var trHtml = ''
+                    for (var j in res[i]) {
+                        trHtml += '<td>' + res[i][j] + '</td>';
+                    }
+                    tbodyHtml += '<tr>' + trHtml + '</tr>';
+                }
+                $('table>tbody').append(tbodyHtml);
+                window.print();
+            }
+
+        });
+});
+    </script>
+</body>
+</html>

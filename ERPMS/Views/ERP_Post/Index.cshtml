@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!-- 岗位编码表Html-->
+<div style="padding: 10px 5px 5px 10px;height:97%;">
+    <div class="column"><span class="current">岗位编码表</span></div>
+    <div style="height:90%;width:100%">
+        <div id="ERP_post"></div>
+        <div id="ERP_post_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_tb_add"> <i class="fa fa-plus-square fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_tb_edit"> <i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_tb_remove"> <i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_tb_save" flag=""> <i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_tb_revort"> <i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</a>
+        </div>
+
+        <div id="post_menu" class="easyui-menu" style="width: 50px; display: none;">
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_menu_add"> <i class="fa fa-plus-square fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_menu_edit"> <i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_menu_remove"> <i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_menu_save" flag=""> <i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="post_menu_revort"> <i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</a>
+            </div>
+        </div>
+</div>
+<script>
+    erpRequire(['sys/post'])
+</script>

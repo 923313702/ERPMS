@@ -1,0 +1,500 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PrintPage</title>
+
+    <link href="~/Content/easyui.css" rel="stylesheet" />
+ 
+ <style>
+     html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+         margin: 0;
+         padding: 0;
+         border: 0;
+         font: inherit;
+         font-size: 100%;
+         vertical-align: baseline
+     }
+     table {
+
+         border-spacing: 0
+     }
+     .contract {
+         margin: 0 auto;
+         width: 900px;
+     }
+
+         .contract h2 {
+             padding: 10px;
+             font-weight: bold;
+         }
+
+         .contract .kv-content span {
+             font-weight: bold;
+         }
+
+         .contract p {
+             height: 25px;
+             line-height: 25px;
+             font-weight: bold;
+         }
+
+     .ask {
+         font-weight: bold;
+         line-height: 30px;
+         padding-bottom: 10px;
+     }
+   
+    
+
+     .phone .textbox {
+         width: 136px !important;
+     }
+     #contract_customerName .textbox {
+         width: 200px !important;
+     }
+     
+     .contract h1 {
+         font-size: 20px;
+         font-weight: bold;
+         text-align: center;
+         padding: 25px;
+     }
+
+     .contract_tool {
+         width: 900px;
+         /* text-align: center; */
+         background: #e8e8e8;
+         margin: 0 auto;
+         height: 30px;
+         padding: 6px;
+         position: relative;
+     }
+
+     .removeboder, tr td {
+         border: none;
+     }
+  
+     .divcss5 {
+         width: 350px;
+         display: -moz-inline-box; /* css注释：for ff2 */
+         display: inline-block;
+     }
+
+
+     #contract_print {
+         overflow: hidden;
+         /*border-bottom: 1px solid #cacaca;*/
+         background: #fefefe;
+         border-right: none;
+         width: 100%;
+   
+        
+     }
+
+         #contract_print th, #contract_print td {
+             padding: 10px 10px;
+             text-align: center;
+         }
+
+         #contract_print th {
+             padding-top: 10px;
+             text-shadow: 1px 1px 1px #fff;
+             border-right: 1px solid #cacaca;
+             background: #e8eaeb;
+         }
+
+         #contract_print td {
+             border-top: 1px solid #cacaca;
+             border-right: 1px solid #cacaca;
+         }
+
+         #contract_print tr.odd-row td {
+             background: #f6f6f6;
+         }
+
+         #contract_print td.first, #contract_print th.first {
+             text-align: left
+         }
+
+         #contract_print td.last, #contract_print th.last {
+             border-right: none;
+         }
+
+     #contract_print td {
+         background: -moz-linear-gradient(100% 25% 90deg, #fefefe, #f9f9f9);
+         background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f9f9f9), to(#fefefe));
+     }
+
+         #contract_print  tr.odd-row td {
+             background: -moz-linear-gradient(100% 25% 90deg, #f6f6f6, #f1f1f1);
+             background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f1f1f1), to(#f6f6f6));
+         }
+
+         #contract_print  th {
+             background: -moz-linear-gradient(100% 20% 90deg, #e8eaeb, #ededed);
+             background: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#ededed), to(#e8eaeb));
+         }
+
+     .kv-table {
+         border-right: 1px solid #cacaca \9;
+         *border-right: 1px solid #cacaca
+     }
+
+         .kv-table .kv-table-row {
+             border-bottom: 1px solid #cacaca
+         }
+
+             .kv-table .kv-table-row .kv-item {
+                 padding-left: 134px
+             }
+
+                 .kv-table .kv-table-row .kv-item .kv-label {
+                     float: left;
+                     padding: 0 10px;
+                     margin-left: -134px;
+                     width: 112px;
+                     background: #f5f5f5;
+                     border: 1px solid #cacaca;
+                     border-bottom: none;
+                     border-top: none
+                 }
+
+                 .kv-table .kv-table-row .kv-item .kv-content-wrap {
+                     float: left;
+                     width: 100%
+                 }
+
+                 .kv-table .kv-table-row .kv-item .kv-content {
+                     padding: 10px
+                 }
+
+             .kv-table .kv-table-row.col-3 .kv-item-wrap {
+                 float: left;
+                 width: 33.33%
+             }
+
+             .kv-table .kv-table-row.col-2 .kv-item-wrap {
+                 float: left;
+                 width: 33.33%
+             }
+
+     table.kv-table {
+         width: 100%
+     }
+
+         table.kv-table .kv-label {
+             padding: 0 10px;
+             width: 114px;
+             background: #f5f5f5;
+             border: 1px solid #cacaca;
+             border-top: none
+         }
+
+         table.kv-table td.kv-content, table.kv-table td.kv-label {
+             /*
+             height: 29px;
+               padding-left: 20px
+        */
+             height: 22px;
+             padding: 5px 0;
+             border-bottom: 1px solid #cacaca;
+             font-size: 12px;
+             padding-left: 15px
+         }
+
+         table.kv-table tr:first-child td.kv-content, table.kv-table tr:first-child td.kv-label {
+             border-top: 1px solid #cacaca
+         }
+
+         table.kv-table tr td.kv-content:last-child {
+             border-right: 1px solid #cacaca
+         }
+
+         table.kv-table tr .button {
+             text-align: center;
+             border-radius: 0;
+             text-indent: 0;
+             height: 32px
+         }
+
+         table.kv-table .kv-content {
+             /*width: 260px;*/
+             padding: 5px 10px
+         }
+
+         table.kv-table .textarea-wrap textarea {
+             width: 98%
+         }
+   .kv-table .kv-content .combo, .kv-table .kv-content .textbox, .kv-table .kv-content .datebox {
+    border: none;
+}
+.kv-table .kv-content .validatebox-invalid, .kv-table .kv-content .textbox-invalid {
+    background-color: #fff;
+}
+     #printLogo {
+         position: absolute;
+     }
+     #canvas {
+         margin-top: -210px;
+         margin-left: 190px;
+     }
+
+ </style>
+</head>
+<body class="contract">
+    <p id="printLogo">
+        <img src="~/images/logo.png" />
+    </p>
+    <h1>订购合同</h1>
+    <form id="contract_print_form">
+        <table class="kv-table">
+            <tbody>
+
+                <tr class="removeboder">
+                    <td class="kv-label">订购方(需方)</td>
+                    <td class="kv-content" id="contract_customerName">
+                        <input class="easyui-textbox" name="CustomerName" />
+                    </td>
+                    <td class="kv-label">业务员</td>
+                    <td class="kv-content"><input class="easyui-textbox"   name="SaleMan" /></td>
+                    <td class="kv-content" colspan="2" style="border-left:1px solid #cacaca">
+                        合同编码<input class="easyui-textbox" name="ContractNo" style="width:130px;" />
+                       
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">承接方(供方)</td>
+                    <td class="kv-content" colspan="2"><input class="easyui-textbox" style="width:250px !important"  value="昆明市国强包装印刷有限公司" /></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content" colspan="2"></td>
+
+                </tr>
+                <tr>
+                    <td class="kv-content" colspan="6" style="padding:0px;border-left:1px solid #cacaca;">
+                        <h2 style="border-bottom:1px solid #cacaca"><span>一.</span>产品及价款</h2>
+                        <div>
+                            <table id="contract_print" cellspacing="0"></table>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="kv-label">金额(大写)</td>
+                    <td class="kv-content"><input class="easyui-textbox" id="contract_upper" /></td>
+                    <td class="kv-label">金额</td>
+                    <td class="kv-content"><input class="easyui-numberbox"  name="Money" id="contract_money" /></td>
+                    <td class="kv-label">不含税金额</td>
+                    <td class="kv-content"><input class="easyui-numberbox" style="width:50px !important;" readonly id="contract_money2" /></td>
+
+                </tr>
+                <tr>
+                    <td colspan="6" class="kv-content" style="border-left:1px solid #cacaca;">
+                        <div style="height:130px">
+                            <h2>二.&nbsp;&nbsp;加工要求 <span class="divcss5"></span>备注</h2>
+                            <div style="width:45%;float:left; margin-left:20px;">
+                                <input class="easyui-textbox" multiline="true" style="min-width:330px; height:100px;" name="Ask" />
+                            </div>
+                            <div style="width:45%;float:left;margin-left:20px;">
+                               
+                                <input class="easyui-textbox" multiline="true" style="min-width:330px;height:100px;" name="Remark" />
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="kv-content ask" style="border-left:1px solid #cacaca;" id="contract_content">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" class="kv-content" id="contract_buyer" style="font-weight:bold;line-height:30px; border-left:1px solid #cacaca;" >
+                      
+
+                    </td>
+                    <td colspan="3" class="kv-content" id="contract_provider" style="font-weight:bold;line-height:30px;border-left:none;">
+                      
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="3"><canvas id="canvas" width="250" height="250"></canvas></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/tool/jsaes.js"></script>
+    <script src="~/Scripts/tool/canvas-img.js"></script>
+    <script>
+
+        $(function () {
+            $.post('/ERP_Contract/PrintData', null, function (response) {
+                if (response != null) {
+                    var jsondata = $.parseJSON(response);
+                    var query = jsondata.query;
+                    $('#contract_print_form').form('load', query);
+                    $('#contract_upper').textbox('setValue', convertToChinese(query.Money))
+                    var rawdata = rawData();
+                    (query.Content == null || query.Content == '' || query.Content == 'null') ? $('#contract_content').html(rawdata.content) : $('#contract_content').html(enescapeHtml(query.Content));
+                    (query.Buyer == null || query.Buyer == '' || query.Buyer == 'null') ? $('#contract_buyer').html(rawdata.buyer) : $('#contract_buyer').html(enescapeHtml(query.Buyer));
+                    (query.Provider == null || query.Provider == '' || query.Provider == 'null') ? $('#contract_provider').html(rawdata.provider) : $('#contract_provider').html(enescapeHtml(query.Provider));
+                    var rows = jsondata.rows;
+                    if (rows != null && rows.length > 0) {
+                        var headCol = Object.keys(rows[0]);
+                        console.log(headCol);
+                        var table = $('#contract_print');
+                        table.empty();
+                        var headHtml = '';
+                        for (var i in headCol) {
+                            headHtml += '<th>' + headCol[i] + '</th>';
+                        }
+                        table.append('<thead>' + headHtml + '</thead>');
+                        var tbodyHtml = '';
+                        var money = 0;
+                        for (var i = 0; i < rows.length; i++) {
+                            money += parseFloat(rows[i]['不含税金额'])
+                            var trHtml = ''
+                            for (var j in rows[i]) {
+
+                                trHtml += '<td>' + rows[i][j] + '</td>';
+                            }
+                            tbodyHtml += '<tr>' + trHtml + '</tr>';
+                        }
+                        console.log(money)
+                        table.append('<tbody>' + tbodyHtml + '</tbody>');
+                        $('#contract_money2').numberbox('setValue', money);
+                    }
+                    window.print();
+                }
+
+            })
+            createSeal('canvas', '昆明市国强包装印刷有限公司', '合同专用章');
+        })
+        function rawData() {
+            var rawdata = {};
+            rawdata.content = ' 三.&nbsp;&nbsp;产品质量要求及技术标准按客户签样<br/>四.&nbsp;&nbsp; 付款方式 &nbsp;:&nbsp;&nbsp; <br/>' +
+                '五.&nbsp;&nbsp; 实际交货数量允许与签约数在:&nbsp;&nbsp;&nbsp;&nbsp; % 内浮动, 货款按实际交货量计算 <br/>' +
+                '六.&nbsp;&nbsp; 需方应在乙方交货三天内验收货物, 在收货之日起十天内无书面异议即视为产品合格 <br/>' +
+                '七.&nbsp;&nbsp; 包装要求:&nbsp;&nbsp;&nbsp;&nbsp; <br/>八.&nbsp;&nbsp; 交货方式 &nbsp;:&nbsp;&nbsp;&nbsp;&nbsp; <br/>' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 交货地点 &nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<br/>' +
+                '九.&nbsp;&nbsp; 因需方原因影响交货日期的与供方无关, 单方因故需要修改、终止、解除协议，须双方盖章的书面协议 <br/>' +
+                ' 十.&nbsp;&nbsp; 解决合同方的方式: 出现纠纷的由双方协商解决, 协商不成, 则由递交房源依法处理 <br/>' +
+                '十一.&nbsp;&nbsp; 本合同一式二份, 供需上方各一份, 技术编撰及订单为合同附件, 合同双方在合同履行过程及相关联络中产生 <br/>' +
+                '十二.&nbsp;&nbsp; 双方协商的其他条款 &nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;';
+
+            rawdata.buyer = '<p id="contract_buyerName">需方(章):&nbsp;&nbsp;</p>法定代表人(委托代理人):&nbsp;&nbsp;<br/>' +
+                '地址:&nbsp;&nbsp; <br/> <p id="contrct_buyer_phone"> 电话:&nbsp;&nbsp;</p><p id="contract_buyer_fax">传真:&nbsp;&nbsp;</p>';
+
+            rawdata.provider = '   供方(章):&nbsp;&nbsp;昆明市国强包装印刷有限公司<br/>法定代表人(委托代理人):&nbsp;&nbsp; <br/>' +
+                '地址:&nbsp;&nbsp; <br/>开户行: 昆明市建行: 前卫西路支行 <br/> 账号:&nbsp;&nbsp; 4367423860999281723 <br/>' +
+                '电话:&nbsp;&nbsp;&nbsp;&nbsp; 13354622464   传真:&nbsp;&nbsp; 0871 - 64576806"';
+            return rawdata;
+        }
+
+        function enescapeHtml(html) {
+            var key = CryptoJS.enc.Utf8.parse("123456789easemob");
+            var iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+            var encryptedHexStr = CryptoJS.enc.Hex.parse(html);
+            var srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+            var decrypt = CryptoJS.AES.decrypt(srcs, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });
+            var decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+            return decryptedStr.toString();
+        }
+
+        function convertToChinese (value) {
+            //如果输入的不是数字，则将其设置为空  
+            if (value == null) { return "零元整"; }
+            var Num = value.toString().replace(/[^\d\.]/g, '').replace(/^0/, '');
+            if (Num == "") {
+                //输入框删减为空时，将大写金额的内容值设为原始状态，当然也可以根据需求进行修改  
+                return "零元整";
+            }
+            part = String(Num).split(".");
+            newchar = "";
+            for (i = part[0].length - 1; i >= 0; i--) {
+                if (part[0].length > 10) {
+                    return '位数过大，无法计算';
+                }
+                tmpnewchar = ""
+                perchar = part[0].charAt(i);
+                switch (perchar) {
+                    case "0": tmpnewchar = "零" + tmpnewchar; break;
+                    case "1": tmpnewchar = "壹" + tmpnewchar; break;
+                    case "2": tmpnewchar = "贰" + tmpnewchar; break;
+                    case "3": tmpnewchar = "叁" + tmpnewchar; break;
+                    case "4": tmpnewchar = "肆" + tmpnewchar; break;
+                    case "5": tmpnewchar = "伍" + tmpnewchar; break;
+                    case "6": tmpnewchar = "陆" + tmpnewchar; break;
+                    case "7": tmpnewchar = "柒" + tmpnewchar; break;
+                    case "8": tmpnewchar = "捌" + tmpnewchar; break;
+                    case "9": tmpnewchar = "玖" + tmpnewchar; break;
+                }
+                switch (part[0].length - i - 1) {
+                    case 0: tmpnewchar = tmpnewchar + "元"; break;
+                    case 1: if (perchar != 0) tmpnewchar = tmpnewchar + "拾"; break;
+                    case 2: if (perchar != 0) tmpnewchar = tmpnewchar + "佰"; break;
+                    case 3: if (perchar != 0) tmpnewchar = tmpnewchar + "仟"; break;
+                    case 4: tmpnewchar = tmpnewchar + "万"; break;
+                    case 5: if (perchar != 0) tmpnewchar = tmpnewchar + "拾"; break;
+                    case 6: if (perchar != 0) tmpnewchar = tmpnewchar + "佰"; break;
+                    case 7: if (perchar != 0) tmpnewchar = tmpnewchar + "仟"; break;
+                    case 8: tmpnewchar = tmpnewchar + "亿"; break;
+                    case 9: tmpnewchar = tmpnewchar + "拾"; break;
+                }
+                newchar = tmpnewchar + newchar;
+            }
+            if (Num.indexOf(".") != -1) {
+                if (part[1].length > 2) {
+                    part[1] = part[1].substr(0, 2)
+                }
+                for (i = 0; i < part[1].length; i++) {
+                    tmpnewchar = ""
+                    perchar = part[1].charAt(i)
+                    switch (perchar) {
+                        case "0": tmpnewchar = "零" + tmpnewchar; break;
+                        case "1": tmpnewchar = "壹" + tmpnewchar; break;
+                        case "2": tmpnewchar = "贰" + tmpnewchar; break;
+                        case "3": tmpnewchar = "叁" + tmpnewchar; break;
+                        case "4": tmpnewchar = "肆" + tmpnewchar; break;
+                        case "5": tmpnewchar = "伍" + tmpnewchar; break;
+                        case "6": tmpnewchar = "陆" + tmpnewchar; break;
+                        case "7": tmpnewchar = "柒" + tmpnewchar; break;
+                        case "8": tmpnewchar = "捌" + tmpnewchar; break;
+                        case "9": tmpnewchar = "玖" + tmpnewchar; break;
+                    }
+                    if (i == 0) tmpnewchar = tmpnewchar + "角";
+                    if (i == 1) tmpnewchar = tmpnewchar + "分";
+                    newchar = newchar + tmpnewchar;
+                }
+            }
+            while (newchar.search("零元") != -1) {
+                newchar = newchar.replace("零零", "零");
+                newchar = newchar.replace("零亿", "亿");
+                newchar = newchar.replace("亿万", "亿");
+                newchar = newchar.replace("零万", "万");
+                newchar = newchar.replace("零元", "元");
+                newchar = newchar.replace("零角", "");
+                newchar = newchar.replace("零分", "");
+            }
+            if (newchar.charAt(newchar.length - 1) == "元" || newchar.charAt(newchar.length - 1) == "角") {
+                newchar = newchar + "整";
+            }
+            return newchar;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1003 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/easyui.css" rel="stylesheet" />
+    @*<link href="~/Content/zTreeStyle/zTreeStyle.css" rel="stylesheet" />*@
+    <link href="~/Content/metroStyle/metroStyle.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <title>Index</title>
+    <style>
+        .kv-table {
+            border-right: 1px solid #cacaca \9;
+            *border-right: 1px solid #cacaca
+        }
+
+            .kv-table .kv-table-row {
+                border-bottom: 1px solid #cacaca
+            }
+
+                .kv-table .kv-table-row .kv-item {
+                    padding-left: 134px
+                }
+
+                    .kv-table .kv-table-row .kv-item .kv-label {
+                        float: left;
+                        padding: 0 10px;
+                        margin-left: -134px;
+                        width: 112px;
+                        background: #f5f5f5;
+                        border: 1px solid #cacaca;
+                        border-bottom: none;
+                        border-top: none
+                    }
+
+                    .kv-table .kv-table-row .kv-item .kv-content-wrap {
+                        float: left;
+                        width: 100%
+                    }
+
+                    .kv-table .kv-table-row .kv-item .kv-content {
+                        padding: 10px
+                    }
+
+                .kv-table .kv-table-row.col-3 .kv-item-wrap {
+                    float: left;
+                    width: 33.33%
+                }
+
+                .kv-table .kv-table-row.col-2 .kv-item-wrap {
+                    float: left;
+                    width: 33.33%
+                }
+
+        table.kv-table {
+            width: 100%
+        }
+
+            table.kv-table .kv-label {
+                padding: 0 10px;
+                width: 114px;
+                background: #f5f5f5;
+                border: 1px solid #cacaca;
+                border-top: none
+            }
+
+            table.kv-table td.kv-content, table.kv-table td.kv-label {
+                /*
+        height: 29px;
+        padding-left: 20px
+*/
+                height: 22px;
+                padding: 5px 0;
+                border-bottom: 1px solid #cacaca;
+                font-size: 12px;
+                padding-left: 15px
+            }
+
+            table.kv-table tr:first-child td.kv-content, table.kv-table tr:first-child td.kv-label {
+                border-top: 1px solid #cacaca
+            }
+
+            table.kv-table tr td.kv-content:last-child {
+                border-right: 1px solid #cacaca
+            }
+
+            table.kv-table tr .button {
+                text-align: center;
+                border-radius: 0;
+                text-indent: 0;
+                height: 32px
+            }
+
+            table.kv-table .kv-content {
+                /*width: 260px;*/
+                padding: 5px 10px
+            }
+
+            table.kv-table .textarea-wrap textarea {
+                width: 98%
+            }
+         .kv-table .kv-content .combo,  .kv-table .kv-content .textbox,  .kv-table .kv-content .datebox {
+            border: none;
+        }
+
+         .kv-table .kv-content .validatebox-invalid,  .kv-table .kv-content .textbox-invalid {
+            background-color: #fff;
+        }
+        .container {
+            position: relative;
+            padding-left: 300px;
+        }
+            .container .left-tree {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                padding: 10px;
+                width: 290px;
+                border: 1px solid #bfbfbf;
+            }
+            .container .content {
+                padding-left: 10px;
+                min-height: 600px;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="left-tree">
+            <ul id="myZtree" class="ztree"></ul>
+            <button id="getCheck">获取选中</button>
+        </div>
+        <div class="content">
+                <div id="DingTalk_datagrid"></div>
+            <div id="DingTalk_tb">
+                <a href="#" class="easyui-linkbutton" plain="true" id="DingTalk_tb_add"> <i class="fa fa-plus-square fa-lg"></i>&nbsp;添加</a>
+                <a href="#" class="easyui-linkbutton" plain="true" id="DingTalk_tb_edit"> <i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+                <a href="#" class="easyui-linkbutton" plain="true" id="DingTalk_tb_remove"> <i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+                <a href="#" class="easyui-linkbutton" plain="true" id="DingTalk_tb_attendance" > <i class="fa fa-clipboard" aria-hidden="true"></i>&nbsp;考勤</a>
+                <input class="easyui-combotree" style="width:250px;" id="DingTalk_tb_comTree">
+                <a href="#" class="easyui-linkbutton" plain="true" id="DingTalk_tb_search"> <i class="fa fa-search fa-lg"></i>&nbsp;查找</a>
+            </div>
+        </div>
+
+        <div id="DingTack_dialog" class="easyui-dialog" title="添加部门" data-options="iconCls:'icon-flag-pink',modal:true,closed:true,toolbar:'#_DingTack_tb'" style="width:400px;height:200px;">
+            <form id="dingTack-form">
+                <table class="kv-table">
+                    <tbody>
+                        <tr>
+                            <td class="kv-label">部门名称</td>
+                            <td class="kv-content">
+                                <input class="easyui-textbox" name="name" validType="deptName" required id="DingTack_name" />
+                                <input type="hidden" name="parentid" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div id="_DingTack_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="ding_add" flag=""><i class="fa fa-plus fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="ding_cancel"><i class="fa fa-remove fa-lg"></i>&nbsp;取消</a>
+        </div>
+
+
+        <!--添加员工-->
+        <div id="Ding_user_dia" class="easyui-dialog"  data-options="iconCls:'icon-flag-pink',modal:true,closed:true,toolbar:'#Ding_user_tb'" style="width:800px;height:400px;">
+            <form id="dingTack_user_form">
+                <table class="kv-table" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td class="kv-label">姓名</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="name" required/>
+                            <input type="hidden" name="orderInDepts"/>
+                            <input type="hidden"name="userid"/>
+                            </td>
+                            <td class="kv-label">手机</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="mobile" validType="Dingmobile"required /></td>
+                            <td class="kv-label">职位</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="position" /></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="kv-label">部门</td>
+                            <td class="kv-content"><input class="easyui-combotree" name="department" id="ding_user_department" style="width:150px;" /></td>
+                            <td class="kv-label">工作场所</td>
+                            <td class="kv-content" ><input class="easyui-textbox" name="workPlace" /></td>
+                            <td class="kv-label">备注</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="remark" /></td>
+                        </tr>
+                        <tr>
+                            <td class="kv-label">固话</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="tel" /></td>
+                            <td class="kv-label">邮箱</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="email" /></td>
+                            <td class="kv-label">企业邮箱</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="orgEmail" /></td>
+                        </tr>
+                        <tr>
+                            <td class="kv-label">工号</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="jobnumber" /></td>
+                            <td class="kv-label">isHide</td>
+                            <td class="kv-content">
+                                <input type="radio" value="false" name="isHide"  checked/>否
+                                <input type="radio" value="true" name="isHide"  />是
+                            </td>
+                            <td class="kv-label">isSenior</td>
+                            <td class="kv-content">
+                                <input type="radio" value="false" name="isSenior" checked/>否
+                                <input type="radio" value="true" name="isSenior" />是
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                <div style="height:10px;"></div>
+                <table  class="kv-table" cellspacing="0">
+                    <tbody>
+                        <tr >
+                            <td class="kv-label" colspan="4">员工信息补充</td>
+                        </tr>
+                        <tr>
+                            <td class="kv-label">爱好</td>
+                            <td class="kv-content"><input class="easyui-textbox" name="hobby"/></td>
+                            <td class="kv-label">年龄</td>
+                            <td class="kv-content"><input class="easyui-numberbox" name="age"/></td>
+                        </tr>
+                   
+                    </tbody>
+                 
+
+                </table>
+            </form>
+        </div>
+
+        <div id="Ding_user_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="Ding_user_add" flag="add"><i class="fa fa-plus fa-lg"></i>&nbsp;添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="Ding_user_cancel"><i class="fa fa-remove fa-lg"></i>&nbsp;取消</a>
+        </div>
+        <!--考勤-->
+        <div id="Ding_user_attendance" class="easyui-dialog" data-options="iconCls:'icon-flag-pink',modal:true,closed:true,toolbar:'#attendace_tb'" style="width:800px;height:400px;">
+           <div id="Ding_attendace_datagrid"></div>
+            <div id="attendace_tb">
+                <form id="attendace_tb_form">
+                <label>开始时间</label><input class="easyui-datetimebox" required id="attendace_start" style="width:200px;"/>
+                <label>结束时间</label><input class="easyui-datetimebox" required id="attendace_end" validType="DingRangeTo['#attendace_start']" style="width:200px;"/>
+                <a href="#" class="easyui-linkbutton" plain="true" id="attendace_tb_search"> <i class="fa fa-search fa-lg"></i>&nbsp;查询</a>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+    <script src="~/Scripts/zTree/jquery.zTree.core.min.js"></script>
+    <script src="~/Scripts/zTree/jquery.ztree.excheck.min.js"></script>
+    <script src="~/Scripts/zTree/jquery.ztree.exedit.min.js"></script>
+    <script src="~/Scripts/zTree/jquery.ztree.exhide.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+
+    <script src="~/Scripts/easyui-extend.js"></script>
+    <script>
+        var zTree, zTreeObj,DingEditRow;
+        var log, className = 'dark',curDragNodes, autoExpandNode;
+        $(function () {
+          //  validType = "rangeTo['#orderinvoice_orderNumber']"
+            $.extend($.fn.validatebox.defaults.rules, {
+                deptName: {
+                    validator: function (value) {
+                        return !/[-,]/i.test(value)
+                    },
+                    message: '部门名称不能包含 - ,'
+                },
+                 Dingmobile: {//非空电话号码 匹配 移动与固定电话号码
+                                validator: function (value, param) {
+                                    return /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}$)/.test(value);
+                                },
+                                message: '格式不正确,请输入正确手机格式。'
+                },
+                 DingRangeTo: {
+                     validator: function (value, param) {
+                         var rules = $.fn.validatebox.defaults.rules;
+                         var p = $(param[0]).val();
+                         console.log(p);
+                         if (p > value) {
+                             console.log("执行了吗")
+                             rules.DingRangeTo.message = '截止日期要大于开始日期';
+                             return false;
+                         } 
+                         var time1 = Date.parse(new Date(p));
+                         var time2 = Date.parse(new Date(value));
+                         var nDays = Math.abs(parseInt((time2 - time1) / 1000 / 3600 / 24));
+                         if (nDays>7) {
+                             rules.DingRangeTo.message = '时间跨度为7天';
+                             return false;
+                         }
+                         return true;
+                     },
+                     message: ''
+                 },
+       
+
+            
+            });
+            var setting = {
+                async: {
+                    enable: true,                                                 // 开启异步加载
+                    url: "/DingTalk/GetDeptMent",    // url
+                                                      // 初始化发送的参数可要可不要，如果传["id",null] 时，后台会解析成 : "null"
+                },
+                data: {//表示tree的数据格式
+                    simpleData: {
+                        enable: true,//表示使用简单数据模式
+                        idKey: "id",//设置之后id为在简单数据模式中的父子节点关联的桥梁
+                        pidKey: "pId",//设置之后pid为在简单数据模式中的父子节点关联的桥梁和id互相对应
+                        rootId: null//pid为null的表示根节点
+                    },
+                    key: {
+                        checked: 'checked',
+                        children: 'children',
+                        isParent: 'isParent',
+                        name:'name'
+
+                    }
+                },
+                view: {//表示tree的显示状态
+                    selectMulti: false,//表示禁止多选
+                    addHoverDom: addHoverDom,
+                    removeHoverDom: removeHoverDom,
+                    showIcon: true,
+                    showLine: true,
+                    selectedMulti: true,
+                    //addDiyDom: addDiyDom ,//用于在节点上固定显示用户自定义控件(add按钮)
+                },
+                check: {//表示tree的节点在点击时的相关设置
+                    enable: true,//是否显示radio/checkbox
+                    autoCheckTrigger:true,
+                    chkStyle: "checkbox",//值为checkbox或者radio表示
+                    chkboxType: { "Y": "ps", "N": "ps" },//表示父子节点的联动效果
+                    radioType: "level"//设置tree的分组
+                },
+                edit: {
+                    enable: true,
+                    drag: {
+                        isCopy:true,
+                        isMove: true,
+                        prev: true,
+                        inner: true,
+                        next:true,
+                        autoOpenTime: 0
+                    },
+                    editNameSelectAll: true,//节点编辑名称 input 初次显示时,设置 txt 内容是否为全选状态
+                    removeTitle: 'remove',//删除按钮的 Title 辅助信息
+                    renameTitle: 'rename',//编辑名称按钮的 Title 辅助信息
+                    showRemoveBtn: true,//设置是否显示删除按钮。
+                    showRemoveBtn: true //设置是否显示编辑名称按钮。
+
+                },
+                callback: {//表示tree的一些事件处理函数
+                    onClick: onClick,
+                    //onCheck: handlerCheck
+                    onAsyncSuccess: zTreeOnAsyncSuccess,
+                    beforeRemove: beforeRemove,//点击删除时触发，用来提示用户是否确定删除（可以根据返回值 true|false 确定是否可以删除）
+                    beforeEditName: beforeEditName,//点击编辑时触发，用来判断该节点是否能编辑
+                    beforeRename: beforeRename,//编辑结束时触发，用来验证输入的数据是否符合要求(也是根据返回值 true|false 确定是否可以编辑完成)
+                    onRemove: onRemove,//(beforeRemove返回true之后可以进行onRemove)删除节点后触发，用户后台操作
+                    onRename: onRename,//编辑后触发，用于操作后台
+
+                    beforeDrag: beforeDrag, //用于捕获节点被拖拽之前的事件回调函数，并且根据返回值确定是否允许开启拖拽操作
+
+                    beforeDrop: beforeDrop, //用于捕获节点拖拽操作结束之前的事件回调函数，并且根据返回值确定是否允许此拖拽操作
+
+                    beforeDragOpen: beforeDragOpen, //用于捕获拖拽节点移动到折叠状态的父节点后，即将自动展开该父节点之前的事件回调函数，并且根据返回值确定是否允许自动展开操作
+                    onDrag: onDrag, //用于捕获节点被拖拽的事件回调函数
+
+                    onDrop: onDrop, //用于捕获节点拖拽操作结束的事件回调函数
+
+                    onExpand: onExpand, //用于捕获节点被展开的事件回调函数
+                }
+
+            };
+
+            var str = {
+                "userid": "zhangsan",
+                "name": "张三",
+                "department": [55195386],
+                "orderInDepts": "",
+                "position": "产品经理",
+                "mobile": "15913215421",
+                "tel": "010-123333",
+                "workPlace": "",
+                "remark": "",
+                "email": "zhangsan@gzdev.com",
+                "orgEmail": "qiye@gzdev.com",
+                "jobnumber": "111111",
+                "isHide": false,
+                "isSenior": false,
+                "extattr": {
+                    "爱好": "旅游",
+                    "年龄": "24"
+                }
+            };
+            zTree=$.fn.zTree.init($("#myZtree"), setting, null);
+            $('#getCheck').click(function () {
+                //var treeObj = $.fn.zTree.getZTreeObj("myZtree");
+                //var nodes = treeObj.getCheckedNodes(true);
+                //var arr = [];
+                //for (var i in nodes) {
+                //    var halfCheck = nodes[i].getCheckStatus();
+                //    if (!halfCheck.half) {
+                //        arr.push(nodes[i]);
+                //    }
+                //}
+                //console.log(arr);
+               
+               var ss= JSON.stringify(str)
+               HttpPost("/DingTalk/Test", { 'str': ss }, function (response) { });
+
+            })
+            $('#ding_add').click(function () {
+
+                HttpPost('/DingTalk/CreateDeptment', $('#dingTack-form').serialize(), function (response) {
+                    var res = JSON.parse(response);
+                    console.log(response);
+                    if (res.errcode == 0) {
+                        var pid = $('input[name=parentid]').val();
+                        var name = $('#DingTack_name').textbox('getValue');
+                        var node = zTree.getNodeByParam("id", pid);
+                        zTree.addNodes(node, { id: res.id, pId: pid, name: name });
+                        $('#dingTack-form').form('clear');
+                        $('#DingTack_dialog').dialog('close')
+                    } else {
+                        $.messager.alert('提示', res.errmsg, 'info');
+                    }
+
+                })
+            })
+        
+            $('#DingTalk_tb_comTree').combotree({
+                url: '/DingTalk/GetComTree',
+                valueField: "id",
+                textField: "text",
+                editable: true,
+                // multiple:true,
+              
+            });
+            $('#ding_user_department').combotree({
+                url: '/DingTalk/GetComTree',
+                valueField: "id",
+                textField: "text",
+                panelWidth:250,
+                editable: true,
+                required:true
+                // multiple:true,
+
+            });
+
+          
+                $('#DingTalk_datagrid').datagrid({
+                    url: '',
+                    method: 'post',
+                    fitColumns: true,
+                    striped: true,//条纹
+                    //pagination: true,//分页
+                    //queryParams: config.queryParams,
+                    toolbar: '#DingTalk_tb',
+                    fit: true,
+                    columns: [[
+                        { field: 'ck', checkbox: true },
+                        { field: 'userid', title: 'userid', hidden: true },
+                        { field: 'name', title: '姓名', align: 'center', width: 100 },
+                        { field: 'position', title: '职位', align: 'center', width: 100, editor: { type: 'textbox', options: { required: true } } },
+                        {
+                            field: 'jobnumber', title: '工号', align: 'center', width: 100, editor: { type: 'numberbox', options: { precision: 0, required: true } }
+                        },
+                        { field: 'mobile', title: '手机', align: 'center', width: 100, editor: { type: 'textbox' } },
+
+                    ]],
+                    onLoadSuccess : function () {
+                        $(this).datagrid("fillRows");
+                    }
+                 });
+                $('#DingTalk_tb_add').click(function () {
+                    //var id = $('#DingTalk_tb_comTree').combotree('getValue');
+                    //if (id == null || id == '' || id == undefined) { return };
+                    $('#Ding_user_add').attr('flag', 'add');
+                    $('#Ding_user_dia').dialog('setTitle', '添加员工');
+                    $('#Ding_user_add').linkbutton({ text: '<i class="fa fa-plus fa-lg"></i>&nbsp;添加' });
+                    $('#Ding_user_dia').dialog('open');
+
+                })
+                $('#DingTalk_tb_search').click(function () {
+                    var id = $('#DingTalk_tb_comTree').combotree('getValue');
+                    if (id == null || id == '' || id == undefined) { return };
+                    var datagrid = $('#DingTalk_datagrid').datagrid('options');
+                    datagrid.url = "/DingTalk/GetUserByDepartment";
+                    datagrid.queryParams = { id: id };
+                    $('#DingTalk_datagrid').datagrid('reload');
+                })
+                $('#Ding_user_add').click(function () {
+                    var data = {};
+                    var extattr = {};
+                    var flag = $(this).attr('flag');
+                    var url = flag == 'add' ? '/DingTalk/AddUser' : '/DingTalk/EditUser';
+
+                        //var arr = $('#DingTalk_tb_comTree').combotree('getValues');
+                    data.extattr = extattr;
+                    //data.department = arr;
+                    var formArr = $('#dingTack_user_form').serializeArray();
+                    for (var i in formArr) {
+                        if (formArr[i].name == 'hobby' && (formArr[i].value != '' && formArr[i].value != null)) {
+                            extattr.爱好 = formArr[i].value;
+                            continue;
+                        }
+                        if (formArr[i].name == 'age' && (formArr[i].value != '' && formArr[i].value != null)) {
+                            extattr.年龄 = formArr[i].value
+                            continue
+                        }
+                        data[formArr[i].name] = formArr[i].value;
+                    }
+                    console.log(data);
+                    HttpPost(url, data, function (response) {
+                        var json = JSON.parse(response);
+                        if (json.errcode == 0) {
+                            var id = $('#ding_user_department').combotree('getValue');
+                            $('#DingTalk_tb_comTree').combotree('setValue', id);
+                            var datagrid = $('#DingTalk_datagrid').datagrid('options');
+                            datagrid.url = "/DingTalk/GetUserByDepartment";
+                            datagrid.queryParams = { id: id };
+                            $('#DingTalk_datagrid').datagrid('reload');
+                            $('#dingTack_user_form').form('clear');
+                            $('#Ding_user_dia').dialog('close');
+                        } else {
+                            $.messager.alert('提示', json.errmsg, 'info');
+                        }
+                        //todo:
+                    })
+                  
+
+                });
+                $('#DingTalk_tb_edit').click(function () {
+                    var data = $('#DingTalk_datagrid').datagrid('getSelections');
+                    if (data.length != 1) {
+                        $.messager.alert('提示', '请选中一行进行修改', 'info');
+                        return;
+                    }
+                    $('#Ding_user_add').attr('flag', 'edit');
+                    var extatt = data[0].extattr;
+
+
+                    if (extatt != null) {
+                        console.log('进来了吗')
+                        for (var i in extatt) {
+                            if (i == '爱好') {
+                                data[0].hobby = extatt[i]
+                            }
+                            if (i == '年龄') {
+                                data[0].age = extatt[i]
+                            }
+
+                        }
+                    }
+                    $('#dingTack_user_form').form('load', data[0]);
+                    $('#Ding_user_dia').dialog('setTitle', '修改用户');
+                    $('#Ding_user_add').linkbutton({ text: '<i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改' });
+                    $('#Ding_user_dia').dialog('open');
+
+
+                });
+                $('#DingTalk_tb_remove').click(function () {
+                    var data = $('#DingTalk_datagrid').datagrid('getSelections');
+                    if (data.length < 1) {
+                        $.messager.alert('提示', '请选则要删除的员工', 'info');
+                        return;
+                    }
+
+                    var useridlist = [];
+                    for (var i in data) {
+
+                        var list = data[i].userid;
+
+
+                        useridlist.push(list);
+
+                    }
+                    console.log(useridlist)
+                    HttpPost('/DingTalk/RemoveUser', { useridlist: useridlist }, function (response) {
+                        var json = JSON.parse(response);
+                        if (json.errcode == 0) {
+                            $('#DingTalk_datagrid').datagrid('reload');
+                        } else {
+                            $.messager.alert('提示', json.errmsg, 'info');
+                        }
+                        //todo:
+                    })
+
+                });
+                $('#DingTalk_tb_attendance').click(function () {
+                    var data = $('#DingTalk_datagrid').datagrid('getSelections');
+                    if (data.length != 1) {
+                        $.messager.alert('提示', '请选中一个员工查询', 'info');
+                        return;
+                    }
+                    $('#Ding_user_attendance').dialog('open');
+                    $('#attendace_tb_form').form('clear');
+                    $('#Ding_attendace_datagrid').datagrid('loadData', { total:0, rows:[] });
+
+                });
+                $('#attendace_tb_search').click(function () {
+                    var data = $('#DingTalk_datagrid').datagrid('getSelections');
+                    var list = data[0].userid;
+                    var date1 = $('#attendace_start').datetimebox('getValue');
+                    var date2 = $('#attendace_end').datetimebox('getValue');
+                    if (!$('#attendace_tb_form').form('validate')) { return;}
+                   var datagrid= $('#Ding_attendace_datagrid').datagrid('options')
+                   datagrid.queryParams = {
+                        page: 0,
+                        rows: 30,
+                        workDateFrom: date1,
+                        workDateTo: date2,
+                        userIdList:list,
+                    };
+                   datagrid.url = '/DingTalk/GetAttendance';
+                   $('#Ding_attendace_datagrid').datagrid('reload');
+
+                })
+
+
+                $('#Ding_attendace_datagrid').datagrid({
+                    url: '',
+                    method: 'post',
+                    fitColumns: true,
+                    striped: true,//条纹
+                    //pagination: true,//分页
+                    //queryParams: config.queryParams,
+                    toolbar: '#attendace_tb',
+                    fit: true,
+                    columns: [[
+
+                        {
+                            field: 'workDate', title: '工作日', align: 'center', width: 100, formatter: function (v, r, i) {
+
+                                var date = formatDate(v);
+                                return date;
+                            }
+                        },
+                        {
+                            field: 'checkType', title: '考勤类型', align: 'center', width: 100, formatter: function (value, row, index) {
+                                if (value == 'OnDuty') {
+                                    return '上班'
+                                } else {
+                                    return '下班';
+                                }
+                            }
+                        },
+                        {
+                            field: 'sourceType', title: '数据来源', align: 'center', width: 100, formatter: function (v, r, i) {
+                                switch (v) {
+                                    case 'ATM':
+                                        return '考勤机';
+                                    case 'BEACON':
+                                        return 'IBeacon';
+                                    case 'DING_ATM':
+                                        return '钉钉考勤机';
+                                    case 'USER':
+                                        return '用户打卡';
+                                    case 'BOSS':
+                                        return '老板改签';
+                                    case 'APPROVE':
+                                        return '审批系统';
+                                    case 'SYSTEM':
+                                        return '考勤系统';
+                                    case 'AUTO_CHECK':
+                                        return '自动打卡';
+
+                                }
+                            }
+
+                        },
+                        {
+                            field: 'timeResult', title: '时间结果', align: 'center', width: 100, formatter: function (v, r, i) {
+
+                                switch (v) {
+                                    case 'Normal':
+                                        return '正常';
+                                    case 'Early':
+                                        return '早退';
+                                    case 'Late':
+                                        return '迟到';
+                                    case 'SeriousLate':
+                                        return '严重迟到';
+                                    case 'Absenteeism':
+                                        return '旷工迟到';
+                                    case 'NotSigned':
+                                        return '未打卡';
+
+                                }
+                            }
+                        },
+                        {
+                            field: 'locationResult', title: '位置结果', align: 'center', width: 100, formatter: function (v, r, i) {
+                                if (v == 'Normal') {
+                                    return '范围内';
+                                }
+                                return '范围外';
+                            }
+                        },
+                        {
+                            field: 'baseCheckTime', title: '基准时间', align: 'center', width: 100, formatter: function (v, r, i) {
+                                var date = formatDate(v);
+                                return date;
+                            }
+                        }, {
+                            field: 'userCheckTime', title: '实际打卡时间', align: 'center', width: '100', formatter: function (v, r, i) {
+                                var date = formatDate(v);
+                                return date;
+                            }
+                        },
+
+                    ]],
+                   
+                    onLoadSuccess: function (data) {
+                        if (data.errcode != undefined && data.errcode != 0) {
+                            $.messager.alert('提示', data.errmsg, 'info');
+                        }
+                    }
+                });
+
+        })
+        //然后是addHoverDom函数，用于添加增加按钮功能，还有removeHoverDom函数，用于当鼠标移出菜单的时候去掉增加按钮。
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                + "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_" + treeNode.tId);
+            if (btn) btn.bind("click", function () {
+                // var pNode = treeNode.getParentNode();
+                $('input[name=parentid]').val(treeNode.id);
+                $('#DingTack_dialog').dialog('open');
+            });
+        };
+        function removeHoverDom(treeId, treeNode) {
+            console.log(treeNode.id)
+            $("#addBtn_" + treeNode.tId).unbind().remove();
+
+           // $("#diyBtn_space_" + treeNode.id).unbind().remove();
+        };
+        //function addDiyDom(treeId, treeNode) {
+        //    var aObj = $("#" + treeNode.tId + "_a");
+        //    if ($("#diyBtn_" + treeNode.id).length > 0) return;
+        //    var editStr = "<span id='diyBtn_space_" + treeNode.id + "' > </span>"
+        //        + "<button type='button' class='diyBtn1' id='diyBtn_" + treeNode.id
+        //        + "' title='" + treeNode.name + "' onfocus='this.blur();'></button>";
+        //    aObj.append(editStr);
+        //    var btn = $("#diyBtn_" + treeNode.id);
+        //    if (btn) btn.bind("click", function () { alert("diy Button for " + treeNode.name); });
+        //};
+        function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+            zTreeObj = $.fn.zTree.getZTreeObj(treeId);
+            showztreemenuNum(true, zTreeObj, 2);
+
+        };
+        function zTreeOnCheck(event, treeId, treeNode) {
+            alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+        };
+
+        function beforeRemove(treeId, treeNode) {
+            var isDel = confirm("确认删除部门 -- " + treeNode.name + " 吗？");
+            var deleted = false;
+            if (isDel) {
+                HttpPost('/DingTalk/DeleteDeptment', { id: treeNode.id }, function (response) {
+
+                    var resp = JSON.parse(response);
+                    console.log(resp.errcode);
+                    if (resp.errcode == 0) {
+                        console.log ('buzhixing ')
+                        console.log(resp.errcode);
+                        return  true;
+                    } else {
+                        $.messager.alert('提示', resp.errmsg, 'info');
+                        return  false;
+                    }
+                })
+            }
+
+
+        }
+        function onRemove(e, treeId, treeNode) {
+            //if (treeNode.isParent) {
+            //    var ids = [];
+            //    ids = getChildren(ids, treeNode);
+            //    alert("删除父节点的id为：" + treeNode.id + "\r\n他的孩子节点有：" + ids.join(","));
+            //    return ;
+            //}
+            //alert("你点击要删除的节点的名称为：" + treeNode.name + "\r\n" + "节点id为：" + treeNode.id);
+        }
+        function beforeEditName(treeId, treeNode) {
+        
+ 
+           // var zTree = $.fn.zTree.getZTreeObj("myZtree");
+            zTree.selectNode(treeNode);
+            /* if(treeNode.isParent){
+                alert("不准编辑非叶子节点！");
+                return false;
+            } */
+            setTimeout(function () {
+                zTree.editName(treeNode);
+            }, 0);
+            return false;
+        }
+        function beforeRename(treeId, treeNode, newName, isCancel) {
+            className = (className === "dark" ? "" : "dark");
+    
+            //if (newName.length < 3) {
+            //    alert("名称不能少于3个字符！");
+            //    return false;
+            //}
+            var pattern = new RegExp("[-,]");
+            var flag = pattern.test(newName);
+            console.log(flag);
+            if (newName.length == 0 || newName.len>64) {
+                zTree.cancelEditName();
+                $.messager.alert ('提示','部门名称长度在0-64之间','info')
+                return false;
+            } if (flag) {
+                zTree.cancelEditName();
+                $.messager.alert('提示', '部门名称不能包含 - ,', 'info');
+                return false;
+            }
+            HttpPost('/DingTalk/UpdateDeptment',{id: treeNode.id, name: newName }, function (response) {
+                var resp = JSON.parse(response);
+                if (resp.errcode == 0) {
+                    return true;
+                } else {
+                    $.messager.alert("提示", resp.errmsg, 'info');
+                    return false;
+                }
+            })
+            return true;
+        }
+        function onRename(e, treeId, treeNode, isCancel) {
+            
+
+           // alert("修改节点的id为：" + treeNode.id + "\n修改后的名称为：" + treeNode.name);
+        }
+        function onClick(e, treeId, treeNode) {
+
+            zTree.expandNode(treeNode);
+            HttpPost('/DingTalk/GetUserByDepartment', { id: treeNode.id }, function (response) {
+
+
+            })
+        }
+
+ 
+        function getTime() {
+            var now = new Date(),
+                h = now.getHours(),
+                m = now.getMinutes(),
+                s = now.getSeconds(),
+                ms = now.getMilliseconds();
+            return (h + ":" + m + ":" + s + " " + ms);
+        }
+        function beforeDrag(treeId, treeNodes) {
+         console.log ('beforeDrag:执行')
+            for (var i = 0, l = treeNodes.length; i < l; i++) {
+                if (treeNodes[i].drag === false) {
+                    curDragNodes = null;
+                    return false;
+                } else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag === false) {
+                    curDragNodes = null;
+                    return false;
+                }
+            }
+            curDragNodes = treeNodes;
+            return true;
+        }
+        function beforeDragOpen(treeId, treeNode) {
+            autoExpandNode = treeNode;
+            return true;
+        }
+        function beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
+         
+            console.log ('beforeDrop:执行')
+            return true;
+        }
+
+        function onDrag(event, treeId, treeNodes) {
+            console.log('onDrag:执行')
+    
+        }
+        function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+       
+            //console.log('onDrop:执行')
+            //console.log('treeId' + treeId);
+            //console.log('treeNodes' + treeNodes[0].id + '    ' + treeNodes[0].pId+'///'+treeNodes[0].order);
+
+            //console.log('targetNode' + targetNode.id);
+            //todo: department (其他属性都没写)
+            var dept = { id:treeNodes[0].id, name:treeNodes[0].name, parentid:targetNode.id };
+            HttpPost('/DingTalk/UpdateDeptment', dept, function (response) {
+                var resp = JSON.parse(response);
+                if (resp.errcode != 0) {
+                    $.messager.alert("提示", resp.errmsg, 'info');
+                    zTree.reAsyncChildNodes(null, "refresh");
+                } else {
+                 
+                }
+            })
+
+        }
+        function onExpand(event, treeId, treeNode) {
+           
+        }
+
+        function HttpPost(url, data, callback) {
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: data,
+                success: function (response) {
+                    callback(response);
+                },
+                error: function (XMLHttpRequest, testStatus, errorThrown) {
+                    alert( XMLHttpRequest.status)
+                }
+
+            })
+        }
+
+
+        function getChildren(ids, treeNode) {
+            ids.push(treeNode.id);
+            if (treeNode.isParent) {
+                for (var obj in treeNode.children) {
+                    getChildren(ids, treeNode.children[obj]);
+                }
+            }
+            return ids;
+        }
+
+
+        function showztreemenuNum(b, childnodes, l) {
+            if (b) {
+                var rootnodes = zTreeObj.getNodes();
+                console.log (rootnodes)
+                showztreemenuNum(false, rootnodes, l);//递归
+            } else {
+                var len = -1;
+                if (!isNull(childnodes) && !isNull((len = childnodes.length)) && len > 0) {
+                    if (l < childnodes[0].level) {
+                        return;
+                    }
+                    for (var i = 0; i < len; i++) {
+                        zTreeObj.expandNode(childnodes[i], true, false, false, true);
+                        var child = childnodes[i].children;
+                        showztreemenuNum(false, child, l);//递归
+                    }
+                }
+            }
+        }
+
+       /**
+        * 判断是否为空
+        *
+        */
+        function isNull(s) {
+            if (s == null || s == "") {
+                return true;
+            }
+        }
+
+        function saveOrupdateUser(flag, data) {
+            if (flag == 'add') {
+                HttpPost(url, data, function (response) {
+                    //todo:
+                })
+            } else if (flag == 'edit') {
+                HttpPost(url, data, function (response) {
+                    //todo:
+                })
+            }
+        }
+        function formatDate(ns) {
+            var d = new Date(ns);
+            var dformat = [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+                + ' ' + [d.getHours(), d.getMinutes(), d.getSeconds()].join(':');
+            return dformat;
+        }
+
+        
+    </script>
+</body>
+</html>

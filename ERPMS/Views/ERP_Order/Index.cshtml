@@ -1,0 +1,229 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+   
+ 
+    #import_menu li {
+        height:22px;
+        line-height:22px;
+        text-indent:2em;
+    }
+    #import_menu li a {
+            text-decoration:none;
+            color:#000;
+    }
+    #import_menu li a:hover {
+        background-color: #e8e8e8;
+        display:block;
+    }
+    .addClass {
+        background-color: #1da02b;
+        color: #fff
+    }
+    #import_content span, #order_purchase_content span{
+        display: -moz-inline-box;
+        display: inline-block;
+        width: 150px;
+    }
+</style>
+
+<div style="padding: 10px 5px 5px 10px;">
+
+
+    <div class="mytools">
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_refresh"><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_valuation"><i class="fa fa-calculator fa-lg"></i>&nbsp;计价</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_design"><i class="fa fa-spinner " ></i>&nbsp;设计</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_cailiao"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;材料</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_apply"><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp;申购</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_logistics"><i class="fa fa-truck fa-lg"></i>&nbsp;物流</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_detail"><i class="fa fa-newspaper-o fa-lg"></i>&nbsp;明细</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="order_invoice"><i class="fa fa-bus fa-lg" aria-hidden="true"></i>&nbsp;发货</a>
+
+
+        <input type="hidden" id="order_page" value="0" readonly />
+        <input type="hidden" id="order_total" value="-1" readonly />
+    </div>
+    <div style="height:50px;"></div>
+    <div class="column"><span class="current">业务承接单</span>&nbsp;&nbsp;&nbsp;<span id="order_orderNo_text" style="color:red;"></span></div>
+    <form id="order_form">
+        <table class="kv-table">
+            <tbody>
+                <tr>
+                    <td class="kv-label">订单名称</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="订单名称" id="order_orderName" required />
+                    <input type="hidden" name="订单号" id="order_orderNo" readonly />
+                        <input type="hidden" name="审核人编码" id="order_auditorNo" readonly />
+                    </td>
+                    <td class="kv-label">制单日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="制单日期" required /></td>
+                    <td class="kv-label">客户名称</td>
+                    <td class="kv-content"><input id="order_customer" class="easyui-combobox" name="客户编码" required/></td>
+                    <td class="kv-label">联系电话</td>
+                    <td class="kv-content"><input class="easyui-textbox" id="order_c_phone" name="联系方式"/></td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">业务员</td>
+                    <td class="kv-content"><input id="order_sale"name="业务员编码" class="easyui-combobox" required /></td>
+                    <td class="kv-label">成品数量</td>
+                    <td class="kv-content"><input class="easyui-numberbox" name="成品数量"  id="orderNumber" required /></td>
+                    <td class="kv-label">客户单号</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="客户单号"/></td>
+                    <td class="kv-label">成品尺寸</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="成品尺寸" validType="testSize" required /></td>
+                </tr>
+                <tr>
+
+                    <td class="kv-label">印品类别</td>
+                    <td class="kv-content"><input  id="order_printCategory" class="easyui-combobox" name="印品类别编码"/></td>
+                    <td class="kv-label">计量单位</td>
+                    <td class="kv-content"><input id="order_unit2" class="easyui-combobox" name="计量单位"/></td>
+                    <td class="kv-label">专色色别</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="专色色别"/></td>
+                    <td class="kv-label">交货日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" name="交货日期" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">印件P数</td>
+                    <td class="kv-content"><input class="easyui-numberbox" name="总P数" required id="orderPnumber" validType="evenNumber"/></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="送货联系方式" required /></td>
+                    <td class="kv-label">样稿类型</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="样稿类型"/></td>
+                    <td class="kv-label">制单人</td>
+                    <td class="kv-content"><input class="easyui-textbox" readonly name="制单人编码" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">加工要求</td>
+                    <td class="kv-content" colspan="5"><input class="easyui-textbox" style="min-width:570px;" name="加工要求" /></td>
+                    <td class="kv-label">客户盯色</td>
+                    <td class="kv-content"><input class="easyui-textbox" name="客户盯色" /></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">变更说明</td>
+                    <td class="kv-content" colspan="5"><input class="easyui-textbox" style="min-width:570px;" name="变更说明"/></td>
+                    <td class="kv-label">带走/留版</td>
+                    <td class="kv-content">
+                        <input type="checkbox" name="样稿随货带走" value="1" id="off" />稿件带走
+                        <input type="checkbox" name="留版标识" value="1" id="leave" />是否留版
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="kv-label">包装要求</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-textbox" style="min-width:360px;" name="包装材料" /></td>
+                    <td class="kv-label">送货地址</td>
+                    <td class="kv-content" colspan="3"><input class="easyui-textbox" style="min-width:360px;" name="客户地址"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="statement" style="margin-top:10px;">
+
+        <div class="info">
+
+            <div class="section-outer" style="height:90%;">
+                <div class="column"><span class="current">部件物料</span></div>
+                <div id="order_material"></div>
+                <!--右击菜单-->
+                <div id="order_material_menu" class="easyui-menu" style="width: 50px; display: none;">
+                    @*<div id="order_material_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>*@
+                    <div id="order_material_edit"><i class="fa fa-pencil-square fa-lg" ></i>&nbsp;修改</div>
+                    <div id="order_material_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                    <div id="order_material_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                    <div id="order_material_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+             
+                </div>
+            </div>
+
+        </div>
+        <div class="process">
+            <div class="process-inner">
+                <div class="section-outer" style="height:45%;">
+                    <div class="column"><span class="current">纸张及印刷</span></div>
+                    <div id="order_paper"></div>
+                    <!--右击菜单-->
+                    <div id="order_paper_menu" class="easyui-menu" style="width: 50px; display: none;">
+                        <div id="order_importProcess" flag="">导入工艺</div>
+                        <div id="order_importMaterial">导入材料</div>
+                        <div id="order_paper_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+                        <div id="order_paper_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                        <div id="order_paper_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                        <div id="order_paper_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                        <div id="order_paper_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+                       
+                    </div>
+                </div>
+
+                <div class="section-outer" style="height:39%;margin:35px 0px;">
+                    <div class="column"><span class="current">加工项目</span></div>
+                    <div id="order_process"></div>
+                    <!--右击菜单-->
+                    <div id="order_process_menu" class="easyui-menu" style="width: 50px; display: none;">
+                        @*<div id="order_process_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>*@
+                        <div id="order_process_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                        <div id="order_process_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                        <div id="order_process_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                        <div id="order_process_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--导入 工序,材料 开始-->
+        <div id="import_dialog" class="easyui-dialog" style="width:600px;height:400px" data-options="modal:true,toolbar:'#_import_tb'" closed="true">
+            <div id="import_layout" class="easyui-layout" fit="true" border="false">
+                <div data-options="region:'west',title:''" style="width:130px;" id="import_menu">
+                  <ul></ul>
+                </div>
+                <div data-options="region:'center',title:''" style="padding:5px;" id="import_content"></div>
+            </div>
+        </div>
+        <div id="_import_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="import_go" flag=""><i class="fa fa-plus fa-lg"></i>&nbsp;导入</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="import_cancel"><i class="fa fa-remove fa-lg"></i>&nbsp;取消</a>
+        </div>
+        <!--导入 工序,材料 结束-->
+    </div>
+    <!--物流 dialog-->
+    <div id="order_logistics_dialog"></div>
+    <!--发货dialog-->
+    <div id="order_invoice_dialog"></div>
+    <!-- 材料dialog-->
+    <div id="order_material_dialog"></div>
+    <!--申购-->
+    <div id="order_apply_dialog"></div>
+    <!--计价dialog-->
+    <div id="order_valuation_dialog"></div>
+    <!--明细-->
+    <div id="order_account_dialog"></div>
+    <!--设计-->
+    <div id="order_design_dialog"></div>
+    <!--审核(申购)-->
+    <div id="order_purchase_dialog" class="easyui-dialog" title="已申购" data-options="iconCls:'icon-flag-pink',modal:true,closed:true" style="width:400px;height:200px;">
+        <div id="order_purchase_content" style="padding:20px;text-align:center;"></div>
+    </div>
+</div> 
+<script>
+    erpRequire(['order/order'])
+</script>
+
+       
+
+
+
+ 
+
+

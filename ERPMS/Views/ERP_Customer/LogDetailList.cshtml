@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<div style="padding: 10px 5px 5px 10px;height:97%;">
+    <div class="column"><span class="current">客户日志记录表清单</span></div>
+    <div style="height:90%;width:100%">
+        <div id="logDetailList_datagrid"></div>
+        <div id="logDetailList_toolbar">
+            <a href="#" class="easyui-linkbutton" plain="true" id="logDetailList_tb_search"> <i class="fa fa-search fa-lg"></i>&nbsp;查找</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="logDetailList_tb_excel"> <i class="fa fa-file-excel-o fa-lg"></i>&nbsp;excel</a>
+            @*<a href="#" class="easyui-linkbutton" plain="true"> <i class="fa fa-download fa-lg"></i>&nbsp;下载</a>*@
+            <a href="#" class="easyui-linkbutton" plain="true" id="logDetailList_tb_print"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+            <label>客户名称:&nbsp;</label><input class="easyui-combobox" id="logDetailList_customerNo" />
+
+        </div>
+
+    </div>
+
+    <div id="logDetailList_dialog" class="easyui-dialog" title="查询条件" data-options="modal:true,closed:true,toolbar:'#logDetailList_toolbar_buttons'" style="width:350px;height:210px;padding:10px;">
+        <form id="logDetailList_form">
+            <table class="kv-table">
+                <tbody>
+                    <tr>
+                        <td class="kv-label">客户名称</td>
+                        <td class="kv-content"><input class="easyui-combobox" name="customerNo" id="logDetailList_customerNo2" data-options=" valueField: 'Id', textField: 'Key'" /></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">制单开始日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" name="zhidanStart" /></td>
+
+                    </tr>
+                    <tr>
+                        <td class="kv-label">制单结束日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" name="zhidanEnd" /></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="logDetailList_toolbar_buttons">
+        <table cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <td>
+                    <a href="#" class="easyui-linkbutton" plain="true" id="logDetailList_go"><i class="fa fa-check fa-lg"></i>&nbsp;确定</a>
+                    <a href="#" class="easyui-linkbutton" plain="true" id="logDetailList_cancel"><i class="fa fa-times fa-lg"></i>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <iframe src="" frameborder="0" id="logDetailListIframe" name="printIframe" style="visibility:hidden;height:0px;"></iframe>
+
+</div>
+
+
+<script>
+    erpRequire(['customer/logDetailList'])
+</script>
+

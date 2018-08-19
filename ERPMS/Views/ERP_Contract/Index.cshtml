@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    .contract {
+        margin: 0 auto;
+        width:900px;
+    }
+    .contract h2{
+        padding:10px;
+        font-weight:bold;
+    }
+        .contract .kv-content span {
+          
+            font-weight: bold;
+        }
+        .contract p {
+            height: 25px;
+            line-height: 25px;
+            font-weight: bold;
+        }
+        .ask {
+            font-weight: bold;
+            line-height:30px;
+            padding-bottom:10px;
+        }
+    /*.contract .kv-table .kv-content .textbox {
+        border: none;
+        border-bottom: 1px solid #cacaca;
+    }*/
+    table.kv-table td.kv-content, table.kv-table td.kv-label {
+        border-left: 1px solid #cacaca;
+    }
+    
+    .phone .textbox {
+        width: 136px !important;
+    }
+    .contract h1 {
+        font-size:20px;
+        font-weight:bold;
+        text-align:center;
+        padding :15px;
+    }
+    .contract_tool {
+        width: 900px;
+        /* text-align: center; */
+        background: #e8e8e8;
+        margin: 0 auto;
+        height: 30px;
+        padding: 6px;
+        position:relative;
+    }
+    .removeboder,tr td {
+        border:none;
+    }
+    #canvas {
+        margin-top: -210px;
+        margin-left: 190px;
+    }
+
+</style>
+
+
+<div class="contract">
+    <div class="contract_tool">
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" ><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+        <a href="#" class="easyui-linkbutton" plain="true" id="contract_print"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+
+        <input type="hidden" id="contract_page" value="0" readonly />
+        <input type="hidden" id="contract_total" value="-1" readonly />
+    </div>
+    <h1>订购合同</h1>
+    <form id="contract_form">
+        <table class="kv-table">
+            <tbody>
+              
+                <tr class="removeboder">
+                    <td class="kv-label">订购方(需方)</td>
+                    <td class="kv-content">
+                        <input class="easyui-combobox" name="客户编码" id="contract_customer" required />
+                    </td>
+                    <td class="kv-label">业务员</td>
+                    <td class="kv-content"><input class="easyui-combobox" id="contract_saleman" required name="业务员编码"/></td>
+                    <td class="kv-label" colspan="2">合同编码&nbsp;&nbsp;
+                        <b id="contract_contractText"></b>
+                        <input type="hidden" readonly name="合同号" id="contract_contractNo"/>
+                        <input type="hidden" readonly name="审核人编码" id="contract_auditorNo"/>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">承接方(供方)</td>
+                    <td class="kv-content" colspan="2"><input class="easyui-textbox" style="width:250px !important" required  value="昆明市国强包装印刷有限公司"/></td>
+                    <td class="kv-label">联系方式</td>
+                    <td class="kv-content" colspan="2">@*<input class="easyui-numberbox" name="成品数量" id="orderNumber" required />*@</td>
+
+                </tr>
+                <tr>
+                    <td class="kv-content" colspan="6" style="padding:0px;">
+                        <h2 style="border-bottom:1px solid #cacaca"><span>一.</span>产品及价款</h2>
+                        <div style="height:200px;">
+                            <div id="contract-detail" border="false"></div>  
+                        </div>
+                      
+                    </td>
+                </tr>
+                <tr>
+                   
+                    <td class="kv-label">金额(大写)</td>
+                    <td class="kv-content"><input class="easyui-textbox" readonly id="contract_upper"/></td>
+                    <td class="kv-label">金额</td>
+                    <td class="kv-content"><input class="easyui-numberbox" readonly name="金额" id="contract_money"/></td>
+                    <td class="kv-label">不含税金额</td>
+                    <td class="kv-content"><input class="easyui-numberbox" style="width:50px !important;" readonly id="contract_money2" /></td>
+
+                </tr>
+                <tr>
+                    <td colspan="6" class="kv-content">
+                        <div  style="height:100px">
+                            <h2>二.&nbsp;&nbsp;加工要求</h2>
+                            <p style="padding:0 20px;"><span>要求:</span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="easyui-textbox" multiline="true"  style="min-width:330px; height:50px;" id="contract_process_ask" />
+                            <span>备注:</span>&nbsp;&nbsp;&nbsp;&nbsp;<input class="easyui-textbox" multiline="true"  style="min-width:330px;height:50px;" id="contract_process_remark"/></p>
+                        </div>
+                    
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6"class="kv-content ask" contentEditable="true" id="contract_content">
+                            三.&nbsp;&nbsp;产品质量要求及技术标准按客户签样<br/>
+                            四.&nbsp;&nbsp;付款方式&nbsp;:<br/>
+                            五.&nbsp;&nbsp;实际交货数量允许与签约数在:&nbsp;&nbsp; % 内浮动,货款按实际交货量计算<br/>
+                            六.&nbsp;&nbsp;需方应在乙方交货三天内验收货物,在收货之日起十天内无书面异议即视为产品合格<br />
+                            七.&nbsp;&nbsp;包装要求:<br />
+
+                            八.&nbsp;&nbsp;交货方式&nbsp;: <br />&nbsp;&nbsp;&nbsp;&nbsp;交货地点&nbsp;:<br />
+                            九.&nbsp;&nbsp;因需方原因影响交货日期的与供方无关,单方因故需要修改、终止、解除协议，须双方盖章的书面协议<br />
+                            十.&nbsp;&nbsp;解决合同方的方式:出现纠纷的由双方协商解决,协商不成,则由递交房源依法处理<br />
+                            十一.&nbsp;&nbsp;本合同一式二份,供需上方各一份,技术编撰及订单为合同附件,合同双方在合同履行过程及相关联络中产生<br/>
+                            十二.&nbsp;&nbsp;双方协商的其他条款&nbsp;:
+
+
+                    </td>
+                </tr>
+              
+                <tr>
+                    <td colspan="3"class="kv-content" id="contract_buyer" style="font-weight:bold;line-height:30px;">
+                            <p id="contract_buyerName">需方(章):</p>
+                            法定代表人(委托代理人):<br/>
+                            地址:<br/>
+                        <p id="contrct_buyer_phone"> 电话:</p>
+                        <p id="contract_buyer_fax">传真:</p>
+                       
+                    </td>
+                    <td colspan="3" class="kv-content" id="contract_provider"  style="font-weight:bold;line-height:30px;border-left:none;">
+                            供方(章):&nbsp;昆明市国强包装印刷有限公司<br/>
+                            法定代表人(委托代理人):<br/>
+                            地址:<br />
+                            开户行:&nbsp;昆明市建行:前卫西路支行<br />
+                            账号:&nbsp;4367423860999281723<br />
+                            电话:&nbsp;13354622464
+                            &nbsp;传真:&nbsp;0871-64576806
+                       
+
+                    </td>
+                 
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="3"><canvas id="canvas" width="250" height="250"></canvas></td>
+                </tr>
+              
+
+            </tbody>
+        </table>
+    </form>
+    <!--右击菜单-->
+    <div id="contract_menu" class="easyui-menu" style="width: 50px; display: none;">
+        <div id="contract_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+        <div id="contract_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+        <div id="contract_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+        <div id="contract_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+        <div id="contract_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+    </div>
+    <iframe src="" frameborder="0" id="printcontractIframe" name="printIframe" style="visibility:hidden;height:0px;"></iframe>
+</div>
+<script>
+    erpRequire(['contract/contract'])
+    
+</script>
+<script src="~/Scripts/tool/canvas-img.js"></script>
+    <script>
+    $(function () {
+
+        createSeal('canvas', '昆明市国强包装印刷有限公司', '合同专用章');
+
+    })
+</script>

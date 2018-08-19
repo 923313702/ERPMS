@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ERPMS</title>
+    <link href="~/Content/base.css" rel="stylesheet" />
+    <link href="~/Content/platform.css" rel="stylesheet" />
+    <link href="~/Content/easyui.css" rel="stylesheet" />
+
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body >
+    <div class="container">
+        <div id="pf-hd">
+            <div class="pf-logo">
+
+                <img src="~/images/logo.png" />
+            </div>
+
+            <div class="pf-user">
+                <div class="pf-user-photo">
+                    <img src="/images/main/user.png" alt="">
+                </div>
+                <h4 class="pf-user-name ellipsis">@ViewData["Account"]</h4>
+                <i class="iconfont xiala">&#xe607;</i>
+
+                <div class="pf-user-panel">
+                    <ul class="pf-user-opt">
+                        <li>
+                            <a href="javascript:;">
+                                <i class="iconfont">&#xe60d;</i>
+                                <span class="pf-opt-name">用户信息</span>
+                            </a>
+                        </li>
+                        <li class="pf-modify-pwd">
+                            <a href="">
+                                <i class="iconfont">&#xe634;</i>
+                                <span class="pf-opt-name">修改密码</span>
+                            </a>
+                        </li>
+                        <li class="pf-logout">
+                            <a href="/Home/LoginOut">
+                                <i class="iconfont">&#xe60e;</i>
+                                <span class="pf-opt-name">退出</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="pf-bd">
+            @RenderBody()
+        </div>
+
+        <div id="pf-ft">
+            <div class="system-name">
+                <i class="iconfont">&#xe6fe;</i>
+                <span>信息管理系统&nbsp;v1.0</span>
+            </div>
+            <div class="copyright-name">
+                <span>CopyRight&nbsp;2016&nbsp;&nbsp;uimaker.com&nbsp;版权所有</span>
+                <i class="iconfont">&#xe6ff;</i>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

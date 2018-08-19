@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div style="padding:5px 10px;">
+    <div class="column"><span class="current">业务承接单合板明细</span> &nbsp;&nbsp;<span id="" style="color:red;"></span></div>
+    <form id="orderAccount_form">
+        <table class="kv-table">
+            <tbody>
+                <tr>
+                    <td class="kv-label">订单号</td>
+                    <td class="kv-content">
+                        <input class="easyui-textbox" name="订单号" id="orderAccount_orderNo" readonly />
+                    </td>
+                    <td class="kv-label">订单名称</td>
+                    <td class="kv-content"><input class="easyui-textbox" readonly  name="订单名称" /></td>
+                    <td class="kv-label">制单人</td>
+                    <td class="kv-content"><input class="easyui-combobox"  name="" id="orderAccount_zhidan"/></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">制单日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" readonly name="制单日期" /></td>
+                    <td class="kv-label">审核人</td>
+                    <td class="kv-content"><input class="easyui-combobox"  id="orderAccount_auditorNo" name="审核人编码" /></td>
+                    <td class="kv-label">审核日期</td>
+                    <td class="kv-content"><input class="easyui-datebox" readonly name="审核日期" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div style="height:240px;margin-top:10px;">
+        <div id="orderAccount_datagrid"></div>
+        <!--右击菜单-->
+        <div id="orderAccount_menu" class="easyui-menu" style="width: 50px; display: none;">
+            <div id="orderAccount_menu_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+            <div id="orderAccount_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+            <div id="orderAccount_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+            <div id="orderAccount_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+            <div id="orderAccount_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    erpRequire(['order/order_account'])
+</script>

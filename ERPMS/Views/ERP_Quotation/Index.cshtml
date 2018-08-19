@@ -1,0 +1,211 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+  
+    #quotation_import_menu li {
+        height: 22px;
+        line-height: 22px;
+        text-indent: 2em;
+    }
+
+        #quotation_import_menu li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+            #quotation_import_menu li a:hover {
+                background-color: #e8e8e8;
+                display: block;
+            }
+
+    .addClass {
+        background-color: #1da02b;
+        color: #fff
+    }
+
+    #quotation_import_content span{
+        display: -moz-inline-box;
+        display: inline-block;
+        width: 150px;
+    }
+</style>
+<!-- 报价管理,报价单页面-->
+<div style="padding: 10px 5px 5px 10px;">
+
+
+    <div class="mytools">
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_save"><i class="fa fa-save fa-lg"></i>&nbsp;保存</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_refresh"><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_import"><i class="fa fa-arrow-circle-down fa-lg"></i>&nbsp;导入</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_makingbill"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;打单</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_auditor" flag=""><i class="fa fa-lock  fa-lg"></i>&nbsp;审核</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotatin_unauditor"><i class="fa fa-unlock fa-lg"></i>&nbsp;撤审</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="quotation_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        <input type="hidden" id="quotation_page" value="0" readonly />
+        <input type="hidden" id="quotation_total" value="-1" readonly />
+    </div>
+
+    <div style="height:50px;"></div>
+
+    <div class="content">
+  
+        <div class="column"><span class="current">报价单</span> &nbsp;&nbsp;&nbsp;<span id="quotation_orderNo_text" style="color:red;"></span></div>
+        <form id="quotation_form" >
+            <table class="kv-table">
+                <tbody>
+                    <tr>
+                        <td class="kv-label">印品名称</td>
+                        <td class="kv-content"><input class="easyui-textbox" required name="订单名称"/>
+                        <input type="hidden" readonly id="quotation_orderNo" name="订单号"/>
+                        </td>
+                        <td class="kv-label">客户名称</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation_customer" required name="客户编码"/></td>
+                        <td class="kv-label">联系方式</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="联系方式" id="quotation_contact"/></td>
+                        <td class="kv-label">是否开票</td>
+                        <td class="kv-content"><input type="checkbox" value="1" name="是否开票"/>是否开票</td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">成品数量</td>
+                        <td class="kv-content"><input class="easyui-numberbox" name="成品数量" required id="quotation_number"/></td>
+                        <td class="kv-label">计量单位</td>
+                        <td class="kv-content"><input class="easyui-combobox" name="计量单位" id="quitation_unit" /></td>
+                        <td class="kv-label">业务员</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation_saleMan" name="业务员编码" /></td>
+                        <td class="kv-label">印品类别</td>
+                        <td class="kv-content"><input class="easyui-combobox " id="quotation_category" name="印品类别编码"/></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">成品尺寸</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="成品尺寸" /></td>
+                        <td class="kv-label">纸张费率</td>
+                        <td class="kv-content"><input class="easyui-numberbox" data-options="precision:2,suffix:'%'" name="纸张放率"></td>
+                        <td class="kv-label">合同号</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="合同编号" /></td>
+                        <td class="kv-label">参照单号</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation_procuction" name="生产单号"/></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">包装费率</td>
+                        <td class="kv-content"><input class="easyui-numberbox" data-options="precision:2,suffix:'%'" name="包装费率"></td>
+                        <td class="kv-label">运输费率</td>
+                        <td class="kv-content"><input class="easyui-numberbox" data-options="precision:2,suffix:'%'" name="运输费率"></td>
+                        <td class="kv-label">仓储费率</td>
+                        <td class="kv-content"><input class="easyui-numberbox" data-options="precision:2,suffix:'%'" name="仓贮费率"></td>
+                        <td class="kv-label">开票费率</td>
+                        <td class="kv-content"><input class="easyui-numberbox" data-options="precision:2,suffix:'%'" name="开票税率"></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">内部说明</td>
+                        <td class="kv-content" colspan="7"><input class="easyui-textbox" data-options="multiline:true" style="min-width:700px;height:50px;" name="内部说明"/></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">客户要求</td>
+                        <td class="kv-content" colspan="7"><input class="easyui-textbox" data-options="multiline:true" style="min-width:700px;height:50px;" name="报价要求"/></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">烫金尺寸</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="烫金尺寸"/></td>
+                        <td class="kv-label">起步单价</td>
+                        <td class="kv-content"><input class="easyui-numberbox" name="烫金起步单价" /></td>
+                        <td class="kv-label">UV尺寸</td>
+                        <td class="kv-content"><input class="easyui-textbox" name="UV尺寸" /></td>
+                        <td class="kv-label">起步单价</td>
+                        <td class="kv-content"><input class="easyui-numberbox" name="UV起步单价" /></td>
+                    </tr>
+                    <tr>
+                        <td class="kv-label">制单人</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation_person" readonly name="制单人编码"/></td>
+                        <td class="kv-label">制单日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" required name="制单日期"/></td>
+                        <td class="kv-label">审核人</td>
+                        <td class="kv-content"><input class="easyui-combobox" id="quotation_auditorPerson" name="审核人编码" readonly /></td>
+                        <td class="kv-label">审核日期</td>
+                        <td class="kv-content"><input class="easyui-datebox" id="quotation_auditorTime" name="审核日期" readonly /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+                <div class="statement" style="padding-right: 400px;">
+                    <div class="info" style="width:390px;border:none;">
+                        <div class="section-outer" style="height:93%;" >
+                            <div class="column"><span class="current">材料</span></div>
+                            <div id="quotation_material"></div>
+                            <!--右击菜单-->
+                            <div id="quotation_material_menu" class="easyui-menu" style="width: 50px; display: none;">
+      
+                                <div id="quotation_material_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                                <div id="quotation_material_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                                <div id="quotation_material_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                                <div id="quotation_material_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process" style=" border:none;">
+                        <div class="process-inner" style="height:700px; ">
+                            <div class="section-outer"  style="height:35%;">
+                                <div class="column"><span class="current">纸张</span></div>
+                                <div id="quotation_detail"></div>
+                                <!--右击菜单-->
+                                <div id="quotation_detail_menu" class="easyui-menu" style="width: 50px; display: none;">
+                                    <div id="quotation_importProcess" flag="">导入工艺</div>
+                                    <div id="quotation_importMaterial">导入材料</div>
+                                    <div id="quotation_detail_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>
+                                    <div id="quotation_detail_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                                    <div id="quotation_detail_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                                    <div id="quotation_detail_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                                    <div id="quotation_detail_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="section-outer" style="height:53%;margin:35px 0px;">
+                                <div class="column"><span class="current">加工工艺</span></div>
+                                <div id="quotation_price"></div>
+                                <!--右击菜单-->
+                                <div id="quotation_price_menu" class="easyui-menu" style="width: 50px; display: none;">
+                                    @*<div id="order_process_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>*@
+                                    <div id="quotation_price_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+                                    <div id="quotation_price_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+                                    <div id="quotation_price_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+                                    <div id="quotation_price_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <!--导入 工序,材料 开始-->
+        <div id="quotation_import_dialog" class="easyui-dialog" style="width:600px;height:400px" data-options="modal:true,toolbar:'#quotation_import_tb'" closed="true">
+            <div  class="easyui-layout" fit="true" border="false">
+                <div data-options="region:'west',title:''" style="width:130px;" id="quotation_import_menu">
+                    <ul></ul>
+                </div>
+                <div data-options="region:'center',title:''" style="padding:5px;" id="quotation_import_content"></div>
+            </div>
+        </div>
+        <div id="quotation_import_tb">
+            <a href="#" class="easyui-linkbutton" plain="true" id="quotation_import_go" flag=""><i class="fa fa-plus fa-lg"></i>&nbsp;导入</a>
+            <a href="#" class="easyui-linkbutton" plain="true" id="quotation_import_cancel"><i class="fa fa-remove fa-lg"></i>&nbsp;取消</a>
+        </div>
+        <!--导入 工序,材料 结束-->
+
+        <!--报价单-->
+        <div id="quotation_Making_bill"></div>
+
+    </div>
+
+</div>
+<script>
+    erpRequire(['quotation/quotation'])
+</script>

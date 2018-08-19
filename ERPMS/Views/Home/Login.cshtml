@@ -1,0 +1,103 @@
+﻿@*@using BotDetect.Web.Mvc;*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>admin管理系统</title>
+
+
+    <link href="~/Content/easyui.css" rel="stylesheet" />
+    <link href="~/Content/base.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    @*<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />*@
+</head>
+<body class="white">
+    <div class="login-hd">
+        <div class="left-bg"></div>
+        <div class="right-bg"></div>
+        <div class="hd-inner">
+
+            <img src="~/images/logo.png" />
+            <span class="split"></span>
+            <span class="sys-name">ERP管理系统</span>
+        </div>
+    </div>
+    <div class="login-bd">
+        <div class="bd-inner">
+            <div class="inner-wrap">
+                <div class="lg-zone">
+                    <div class="lg-box">
+                        <div class="lg-label"><h4>用户登录</h4></div>
+                        <div class="alert alert-error">
+                            <i class="iconfont">&#xe62e;</i>
+                            <span id="myerror">
+                                @Html.ValidationMessage("Error")
+                            </span>
+                        </div>
+                        <form method="post" id="myForm">
+
+                            @*@{ MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
+                                exampleCaptcha.UserInputID = "CaptchaCode";
+                            }*@
+
+                            <div class="lg-username input-item clearfix">
+                                <i class="iconfont">&#xe60d;</i>
+                                <input type="text" placeholder="账号/邮箱" name="Account" required id="Account">
+                            </div>
+                            <div class="lg-password input-item clearfix">
+                                <i class="iconfont">&#xe634;</i>
+                                <input type="password" placeholder="请输入密码" name="Password" required id="Password">
+                            </div>
+                            <div class="lg-check clearfix">
+                                <div class="input-item">
+                                    <i class="iconfont">&#xe633;</i>
+                                    <input type="text" placeholder="验证码" name="CaptchaCode" id="CaptchaCode" >
+
+                                </div>
+                                @*<div class="check-code">
+                                    @Html.Captcha(exampleCaptcha)
+
+                                </div>*@
+
+                            </div>
+                            <div class="tips clearfix">
+                                <label><input type="checkbox" checked="checked">记住用户名</label>
+                                <a href="javascript:;" class="register">立即注册</a>
+                                <a href="javascript:;" class="forget-pwd">忘记密码？</a>
+                            </div>
+                            <div class="enter">
+                                <button class="purchaser" id="loginSubmit">Sign In</button>
+                            </div>
+                        </form>
+                        <div class="line line-y"></div>
+                        <div class="line line-g"></div>
+                    </div>
+                </div>
+                <div class="lg-poster"></div>
+            </div>
+        </div>
+    </div>
+    <div class="login-ft">
+        <div class="ft-inner">
+            @*<div class="about-us">
+                    <a href="javascript:;">关于我们</a>
+                    <a href="javascript:;">法律声明</a>
+                    <a href="javascript:;">服务条款</a>
+                    <a href="javascript:;">联系方式</a>
+                </div>*@
+            <div class="address">地址：上海市宝山区&nbsp;邮编：200241&nbsp;&nbsp;Copyright&nbsp;©&nbsp;2017&nbsp;-&nbsp;2019&nbsp;admin&nbsp;版权所有</div>
+            <div class="other-info">苏ICP备&nbsp;09003078号&nbsp;E-mail：www.admin.com</div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/login.js"></script>
+</body>
+</html>
+
+

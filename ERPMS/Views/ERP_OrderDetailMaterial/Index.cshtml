@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div style="padding:5px 10px;">
+    <div>
+        @*<a href="#" class="easyui-linkbutton" plain="true" id="orderInvoice_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</a>*@
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderMaterial_pre"><i class="fa fa-step-backward fa-lg"></i>&nbsp;前翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="orderMaterial_next"><i class="fa fa-step-forward fa-lg"></i>&nbsp;后翻</a>
+        <a href="#" class="easyui-linkbutton" plain="true" id="process_tb_excel"> <i class="fa fa-file-excel-o fa-lg"></i>&nbsp;excel</a>
+        <a href="#" class="easyui-linkbutton" plain="true"> <i class="fa fa-print fa-lg"></i>&nbsp;打印</a>
+        @*<a href="#" class="easyui-linkbutton" plain="true" ><i class="fa fa-refresh fa-lg"></i>&nbsp;刷新</a>*@
+
+        <input type="hidden" id="orderMaterial_page" value="0" readonly />
+        <input type="hidden" id="orderMaterial_total" value="-1" readonly />
+    </div>
+    <div class="column"><span class="current">订单用料</span> &nbsp;&nbsp;<span id="orderMaterial_text" style="color:red;"></span></div>
+    <form id="orderMaterial_form">
+        <table class="kv-table">
+            <tbody>
+                <tr>
+                    <td class="kv-label">订单号</td>
+                    <td class="kv-content">
+                        <input class="easyui-textbox"  name="订单号" id="orderMaterial_orderNo" readonly />
+                        <input type="hidden" name="审核人编码" readonly/>
+                    </td>
+                    <td class="kv-label">印品名称</td>
+                    <td class="kv-content"><input class="easyui-combobox"  readonly id="orderMaterial_pcategory" name="订单名称"/></td>
+                    <td class="kv-label">成品数量</td>
+                    <td class="kv-content"><input class="easyui-numberbox" readonly name="成品数量"/></td>
+                </tr>
+                <tr>
+                    <td class="kv-label">业务员</td>
+                    <td class="kv-content" ><input class="easyui-combobox" readonly id="orderMaterial_saleman" name="业务员编码"></td>
+                    <td class="kv-label">客户名称</td>
+                    <td class="kv-content"><input class="easyui-combobox" readonly  id="orderMaterial_customer" name="客户编码"/></td>
+                    <td class="kv-label">交货日期</td>
+                    <td class="kv-content"><input class="easyui-datebox"   readonly name="交货日期"/></td>
+
+                </tr>
+                <tr>
+                    <td class="kv-label">摘要说明</td>
+                    <td class="kv-content" colspan="5"><input class="easyui-combobox" style="min-width:550px;" name="包装材料"/></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </form>
+    <div style="height:180px;margin-top:10px;">
+        <div id="orderMaterial_datagrid"></div>
+        <!--右击菜单-->
+        <div id="orderMaterial_menu" class="easyui-menu" style="width: 50px; display: none;">
+            @*<div id="order_material_add"><i class="fa fa-plus-square fa-lg"></i>&nbsp;新增</div>*@
+            <div id="orderMaterial_menu_edit"><i class="fa fa-pencil-square fa-lg"></i>&nbsp;修改</div>
+            <div id="orderMaterial_menu_save" flag=""><i class="fa fa-save fa-lg"></i>&nbsp;保存</div>
+            <div id="orderMaterial_menu_revort"><i class="fa fa-reply-all fa-lg"></i>&nbsp;撤销</div>
+            <div id="orderMaterial_menu_remove"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</div>
+
+        </div>
+    </div>
+       
+    </div>
+<script>
+    erpRequire(['order/order_material'])
+</script>

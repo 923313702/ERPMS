@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0d70491a96e747469a0c5dc7c1259867" Name="Diagram1" ZoomLevel="30">
+        <EntityTypeShape EntityType="ERPMSModel.SYS_用户信息表" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_EMMS_生产设备编码表" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MCMS_设计订单_Detail_派工工艺" Width="1.5" PointX="13.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MCMS_设计订单_Master" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MIMS_材料编码表" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MIMS_材料类别编码表" Width="1.5" PointX="2.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MIMS_材料期初表" Width="1.5" PointX="7.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MIMS_纸张编码表" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_MIMS_纸张期初库存表" Width="1.5" PointX="12" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_报价单_Detail" Width="1.5" PointX="15.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_报价单_Detail_材料" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_报价单_Detail_工艺" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_报价单_Detail_计价" Width="1.5" PointX="7.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_报价单_Master" Width="1.5" PointX="17.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_Detail" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_Detail_材料" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_Detail_附件" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_Detail_工艺" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_Detail_计价" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_Master" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_发货申请单" Width="1.5" PointX="2.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_订单_预收款凭单" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_工艺类别系数表" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_工艺项目编码表" Width="1.5" PointX="4.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_合同_Detail_工艺" Width="1.5" PointX="12" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_合同_Detail_印品" Width="1.5" PointX="19.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_合同_Master" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_基础_加放率表" Width="1.5" PointX="19.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_基础_印色编码表" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_开数编码表" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_客户_客户对账单" Width="1.5" PointX="9.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_客户编码表" Width="1.5" PointX="11.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_客户日志记录表" Width="1.5" PointX="13.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_印品类别编码表" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_PDMS_物流公司编码表" Width="1.5" PointX="21.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_PDMS_物流申请单_Detail" Width="1.5" PointX="21.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_PDMS_物流申请单_Master" Width="1.5" PointX="21.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_PHMS_采购申请单_Detail" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.T_PHMS_采购申请单_Master" Width="1.5" PointX="23.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_单据类型编码表" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_岗位编码表" Width="1.5" PointX="23.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_岗位人员编码表" Width="1.5" PointX="23.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_功能编码表" Width="1.5" PointX="15.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_功能岗位编码表" Width="1.5" PointX="23.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_人员编码表" Width="1.5" PointX="17.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMSModel.Table_组织编码表" Width="1.5" PointX="23.75" PointY="20.75" IsExpanded="true" />
+        <AssociationConnector Association="ERPMSModel.FK_MaterialNo_MaterialCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_T_MIMS_材料期初表_T_MIMS_材料编码表" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_T_MIMS_纸张期初库存表_T_MIMS_纸张编码表" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_Detail_material" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_Detail_process" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_order_Detail_orderId" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_order_Price_detailNo" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_order_Price_materialId" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_order_Price_processId" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMSModel.FK_constractNo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_出版_项目编码表" Width="1.5" PointX="20.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_业务报价单_Detail" Width="1.5" PointX="22.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_业务报价单_Detail_计价" Width="1.5" PointX="24.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ERPMSModel.T_OMS_业务报价单_Master" Width="1.5" PointX="25.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
